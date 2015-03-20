@@ -250,3 +250,9 @@ Fullcalendar
         }
     }
 }
+
+@if $theme-type == "material-design" { 
+  .portlet.calendar.light .fc-button {
+    top: -47px;
+  }
+}

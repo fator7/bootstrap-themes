@@ -882,7 +882,7 @@ Page Header
 	}
 }
 
-@media (max-width: $screen-xs-min) { /* 480px */
+@media (max-width: $screen-xs-max) { /* 767px */
 
 	.page-header.navbar {
 		height: $header-height-xs;
@@ -948,7 +948,7 @@ Pace - Page Progress
   border-radius: 10px !important; 
 }
 
-@media (max-width: $screen-xs-min) { /* 480px */ 
+@media (max-width: $screen-xs-max) { /* 767px */ 
 
   .page-header-fixed .pace .pace-progress {
     top: ($header-height * 2);

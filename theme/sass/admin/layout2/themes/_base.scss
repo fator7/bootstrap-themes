@@ -631,7 +631,7 @@
         }
     }
 
-    @media (max-width: $screen-xs-min) { /* 480px */
+    @media (max-width: $screen-xs-max) { /* 767px */
 
         .page-header.navbar {
             background: $header-logo-bg-color; 

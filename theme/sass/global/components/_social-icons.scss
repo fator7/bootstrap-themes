@@ -28,11 +28,19 @@ Social Icons
             -ms-transition: all 0.3s ease-in-out;
             -moz-transition: all 0.3s ease-in-out;
             -webkit-transition: all 0.3s ease-in-out;
+
+            @if $theme-type == "material-design" { 
+                @extend .md-shadow-z-1;
+            }
         }
 
         &:hover {
             > a {
                 background-position:0 -38px;
+
+                @if $theme-type == "material-design" { 
+                    @extend .md-shadow-z-2-hover; 
+                }
             }
         }
 
@@ -81,8 +89,16 @@ Social Icons
                 opacity: 0.7;
                 background-position:0 -38px !important;
 
+                @if $theme-type == "material-design" { 
+                    @extend .md-shadow-z-1;
+                }
+
                 &:hover {
                     opacity: 1;
+                    
+                    @if $theme-type == "material-design" { 
+                        @extend .md-shadow-z-2-hover;
+                    }
                 }
             }
         }

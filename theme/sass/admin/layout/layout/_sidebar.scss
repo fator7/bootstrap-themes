@@ -721,7 +721,6 @@ Page sidebar
 			.page-sidebar {
 				&:hover {  
 					width: $sidebar-width !important;
-					display: absolute;
 					z-index: $zindex-sidebar-fixed;
 					margin-left: -$sidebar-width !important;
 

@@ -27,10 +27,14 @@ Dropdown Menu
     float: left;
     list-style: none;
     text-shadow: none;
-    padding: 0px;
-    margin: 10px  0px 0px 0px;   
+    padding: 0px;  
     background-color: #ffffff; 
-    box-shadow: 5px 5px rgba(#666, 0.1);
+
+    @if $theme-type == "default" { 
+        margin: 10px  0px 0px 0px; 
+        box-shadow: 5px 5px rgba(#666, 0.1);
+    }
+    
     border: 1px solid #eee;
     font-family: $font-family-default;  
 
@@ -85,36 +89,47 @@ Dropdown Menu
         bottom: 100%;
         margin-bottom: 2px;
     }
+
+    > li:first-child:hover > a {
+        border-radius: $general-border-radius $general-border-radius 0px 0px;
+    }
+
+    > li:last-child:hover > a {
+        border-radius: 0px 0px $general-border-radius $general-border-radius;
+    }
 }
 
 .dropdown,
 .dropdown-toggle,
 .btn-group {
-    > .dropdown-menu {        
-        margin-top: 10px; 
+    > .dropdown-menu {      
 
-        &:before {
-            position: absolute;
-            top: -8px;
-            left: 9px;
-            right: auto;
-            display: inline-block !important;
-            border-right: 8px solid transparent;
-            border-bottom: 8px solid #e0e0e0;
-            border-left: 8px solid transparent;
-            content: '';
-        }
+        @if $theme-type == "default" {
+            margin-top: 10px; 
 
-        &:after {
-            position: absolute;
-            top: -7px;
-            left: 10px;
-            right: auto;
-            display: inline-block !important;
-            border-right: 7px solid transparent;
-            border-bottom: 7px solid #fff;
-            border-left: 7px solid transparent;
-            content: '';
+            &:before {
+                position: absolute;
+                top: -8px;
+                left: 9px;
+                right: auto;
+                display: inline-block !important;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #e0e0e0;
+                border-left: 8px solid transparent;
+                content: '';
+            }
+
+            &:after {
+                position: absolute;
+                top: -7px;
+                left: 10px;
+                right: auto;
+                display: inline-block !important;
+                border-right: 7px solid transparent;
+                border-bottom: 7px solid #fff;
+                border-left: 7px solid transparent;
+                content: '';
+            }
         }
 
         &.pull-left {
@@ -251,7 +266,7 @@ Dropdown Menu
 
                     > a:hover,
                     > a:active {
-                        ackground-color: #eee;
+                        background-color: #eee;
                     }
                 }
             }
@@ -289,6 +304,42 @@ Dropdown Checkboxes
 
         .radio {
             margin-right: 3px;
+        }
+    }
+}
+
+@if $theme-type == "material-design" {
+    .dropdown-menu {
+        @extend .md-shadow-z-2-i;        
+        border: 0 !important;
+        border-radius: $general-border-radius !important;     
+        margin: 0;     
+
+        &:before,
+        &:after {
+            display: none !important;
+        }
+    }
+
+    .btn-group {
+        > .dropdown-menu {
+            @extend .md-shadow-z-2-i;
+            @include opacity(0);
+            margin-top: 0px;
+        }
+
+        &.dropup {
+            > .dropdown-menu {     
+                margin-top: 0px; 
+                margin-bottom: 0px;
+            }  
+        }
+    }
+
+    .btn-group.open {
+        > .dropdown-menu {            
+            @include ease-out(1500ms, opacity, 0.1ms);  
+            @include opacity(1);
         }
     }
 }

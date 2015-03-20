@@ -19,9 +19,9 @@
 
 // Opacity
 
-@mixin opacity($value) {
-  opacity: $value;
-  filter: alpha(opacity=#{$value * 100});
+@mixin opacity($value, $important: '') {
+  opacity: $value #{$important};
+  filter: alpha(opacity=#{$value * 100}) #{$important};
 }
 
 // Border radius.
@@ -30,7 +30,7 @@
   -webkit-border-radius: $radius#{$important};
   -moz-border-radius: $radius#{$important};
   -ms-border-radius: $radius#{$important};  
-  -o-border-radius: $radius#{$important};  
+  -o-border-radius: $radius#{$important};      
   border-radius: $radius#{$important}; 
 }
 
@@ -159,7 +159,7 @@
 @mixin button-variant($color, $background, $border) {
   color: $color;
   background-color: $background;
-  border-color: $border;
+  @if $border != "" { border-color: $border; } 
 
   &:hover,
   &:focus,
@@ -240,7 +240,12 @@
   .checkbox,
   .radio-inline,
   .checkbox-inline  {
-    color: $text-color;
+    
+    @if $theme-type == "material-design" {
+      color: $background-color;
+    } @else {
+      color: $text-color;
+    } 
   }
   // Set the border and box shadow on specific inputs to match
   .form-control {
@@ -257,9 +262,37 @@
     color: $text-color;
     border-color: $border-color;
     background-color: $background-color;
+
+    > i {
+      @if $theme-type == "material-design" {
+        color: $background-color;
+      } @else {
+        color: $text-color;
+      }  
+    }
   }
   // Optional feedback icon
   .form-control-feedback {
     color: $text-color;
   }
 }
+
+
+// Material Design Transitions
+
+@mixin  ease-out($duration: 450ms, $property: all, $delay: 0ms) {
+  transition: $property $duration cubic-bezier(0.23, 1, 0.32, 1) $delay;
+}
+
+@mixin  pulsate($animation-name, $start-size: 0.75, $end-size: 1, $duration: 1.5s) {
+  @keyframes "#{$animation-name}" {
+    0%, 100% {
+      transform: scale($start-size);
+    }
+    50% {
+      transform: scale($end-size);
+    }
+  }  
+  animation: $animation-name $duration ease 0s infinite;
+}
+

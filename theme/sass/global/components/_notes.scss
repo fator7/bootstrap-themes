@@ -4,7 +4,7 @@ Notes
 
 @mixin note-variant($text-color, $background-color, $border-color) {
     background-color: lighten($background-color, 5%);
-    border-color: darken($border-color, 10%);
+    border-color: darken($border-color, 5%);
     color: $text-color;  
 
     &.note-bordered {
@@ -75,4 +75,12 @@ Notes
   		@include note-variant($state-danger-text, $state-danger-bg, $state-danger-border);
   	}
 
+}
+
+@if $theme-type == "material-design" {  
+  .note {
+    @include border-radius($general-border-radius);  
+    border: 0;  
+    @extend .md-shadow-z-1;         
+  }
 }

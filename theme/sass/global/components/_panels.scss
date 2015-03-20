@@ -3,9 +3,12 @@ Customized Bootstrap Panels
 ***/
 
 .panel {  
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
+
+    @if $theme-type == "default" {
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+    }
 
     .panel-group & {
         overflow: visible;
@@ -84,5 +87,12 @@ Accordions
 
     a:hover {
         text-decoration:none;
+    }
+}
+
+@if $theme-type == "material-design" {
+    .panel {
+        @extend .md-shadow-z-2;        
+        border: 0; 
     }
 }

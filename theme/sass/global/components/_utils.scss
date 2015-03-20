@@ -73,8 +73,14 @@ a:hover {
     font-weight: 700 !important;
 }
 
-.thin {
-    font-weight: 300 !important;
+@if $theme-type == "material-design" {
+    .thin {
+        font-weight: 500 !important;
+    }
+} @else {
+    .thin {
+        font-weight: 300 !important;
+    }  
 }
 
 .uppercase {
@@ -166,6 +172,10 @@ a:hover {
 
 .margin-bottom-30 {
     margin-bottom: 30px !important;
+}
+
+.margin-bottom-40 {
+    margin-bottom: 40px !important;
 }
 
 .margin-right-10 {
@@ -456,6 +466,13 @@ Custom vertical inline menu
             top: 12px;
             right: -5px;    
         }
+    }
+}
+
+@if $theme-type == "material-design" {  
+    .ver-inline-menu {
+        @include border-radius($general-border-radius);
+        @extend .md-shadow-z-2;               
     }
 }
 

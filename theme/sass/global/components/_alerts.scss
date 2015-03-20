@@ -29,3 +29,11 @@ Bootstrap Alerts
 .alert-danger {
   @include alert-variant($state-danger-bg, $state-danger-border, $state-danger-text);
 }
+
+@if $theme-type == "material-design" {  
+	.alert {
+		@include border-radius($general-border-radius);  
+		border-width: 0;  
+		@extend .md-shadow-z-1;               
+	}
+}

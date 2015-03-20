@@ -32,7 +32,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="../../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link href="../../assets/global/plugins/nouislider/jquery.nouislider.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/plugins/nouislider/jquery.nouislider.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/plugins/nouislider/jquery.nouislider.pips.min.css" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="../../assets/global/css/components-rounded.css" id="style_components" rel="stylesheet" type="text/css">
@@ -593,6 +594,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													Block UI </a>
 												</li>
 												<li>
+													<a href="ui_bootstrap_growl.html">
+													<i class="fa fa-angle-right"></i>
+													Bootstrap Growl Notifications <span class="badge badge-roundless badge-warning">new</span></a>
+												</li>
+												<li>
 													<a href="ui_notific8.html">
 													<i class="fa fa-angle-right"></i>
 													Notific8 Notifications </a>
@@ -657,8 +663,15 @@ License: You must have a valid license purchased only from themeforest(the above
 													<h3>Form Stuff</h3>
 												</li>
 												<li>
+													<a href="form_controls_md.html">
+													<i class="fa fa-angle-right"></i>
+													Material Design<br>
+													Form Controls </a>
+												</li>
+												<li>
 													<a href="form_controls.html">
 													<i class="fa fa-angle-right"></i>
+													Bootstrap<br>
 													Form Controls </a>
 												</li>
 												<li>
@@ -726,7 +739,12 @@ License: You must have a valid license purchased only from themeforest(the above
 												<li>
 													<a href="components_form_tools.html">
 													<i class="fa fa-angle-right"></i>
-													Form Tools </a>
+													Form Widgets & Tools </a>
+												</li>
+												<li>
+													<a href="components_form_tools2.html">
+													<i class="fa fa-angle-right"></i>
+													Form Widgets & Tools 2 </a>
 												</li>
 												<li>
 													<a href="components_editors.html">
@@ -1106,14 +1124,34 @@ License: You must have a valid license purchased only from themeforest(the above
 													500 Page Option 2 </a>
 												</li>
 												<li>
+													<a href="email_template1.html">
+													<i class="fa fa-angle-right"></i>
+													New Email Template 1 </a>
+												</li>
+												<li>
+													<a href="email_template2.html">
+													<i class="fa fa-angle-right"></i>
+													New Email Template 2 </a>
+												</li>
+												<li>
+													<a href="email_template3.html">
+													<i class="fa fa-angle-right"></i>
+													New Email Template 3 </a>
+												</li>
+												<li>
+													<a href="email_template4.html">
+													<i class="fa fa-angle-right"></i>
+													New Email Template 4 </a>
+												</li>
+												<li>
 													<a href="email_newsletter.html">
 													<i class="fa fa-angle-right"></i>
-													Newsletter Email Template </a>
+													Old Email Template 1 </a>
 												</li>
 												<li>
 													<a href="email_system.html">
 													<i class="fa fa-angle-right"></i>
-													System Email Template </a>
+													Old Email Template 2 </a>
 												</li>
 											</ul>
 										</div>
@@ -1345,34 +1383,46 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Attach To Inputs</label>
+										<label class="col-md-3 control-label">Non linear slider</label>
 										<div class="col-md-4">
-											<div class="noUi-control noUi-danger" id="slider_2">
+											<div id="nonlinear">
 											</div>
-											<div class="input-group input-medium margin-top-20">
-												<input id="slider_2_input_start" type="text" class="form-control" name="from">
-												<span class="input-group-addon">
-												to </span>
-												<input id="slider_2_input_end" type="text" class="form-control" name="to">
+											<div class="well margin-top-20">
+												<span class="example-val" id="lower-value"></span><br>
+												<span id="lower-offset"></span><br>
+												<span class="example-val" id="upper-value"></span><br>
+												<span id="upper-offset"></span>
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Disable Slider</label>
+										<label class="col-md-3 control-label">Locking sliders together</label>
 										<div class="col-md-4">
-											<div class="noUi-control noUi-warning" id="slider_3">
+											<div class="slider" id="slider1">
 											</div>
-											<label class="margin-top-10">
-											<input id="slider_3_checkbox" type="checkbox" value="1"> Disable! </label>
+											<span class="example-val" id="slider1-span"></span>
+											<div class="slider" id="slider2">
+											</div>
+											<span class="example-val" id="slider2-span"></span>
+											<a href="javascript:;" id="slider2-btn" class="btn btn-success" style="float:right;margin:20px 0 0">Lock</a>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Working with dates</label>
+										<div class="col-md-4">
+											<div id="slider-date">
+											</div>
+											<div class="well margin-top-20">
+												 From: <span class="example-val bold" id="event-start"></span><br>
+												 to: <span class="example-val bold" id="event-end"></span>
+											</div>
 										</div>
 									</div>
 									<div class="form-group last">
-										<label class="col-md-3 control-label">Reading Slider Value</label>
+										<label class="col-md-3 control-label">Soft limits</label>
 										<div class="col-md-4">
-											<div class="noUi-control noUi-default" id="slider_4">
+											<div id="soft" class="margin-bottom-40">
 											</div>
-											<a id="slider_4_btn" href="javascript:;" class="margin-top-10 btn blue btn-sm">
-											Read me! </a>
 										</div>
 									</div>
 								</div>
@@ -1485,7 +1535,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="../../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="../../assets/global/plugins/nouislider/jquery.nouislider.min.js"></script>
+<script src="../../assets/global/plugins/nouislider/jquery.nouislider.all.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="../../assets/global/scripts/metronic.js" type="text/javascript"></script>

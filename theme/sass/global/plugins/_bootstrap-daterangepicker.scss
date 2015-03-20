@@ -36,6 +36,14 @@ Bootstrap Daterangepicker
   display: block;
 }
 
+.daterangepicker .ranges {
+  width: 170px;
+
+  ul > li.active {
+    @include border-radius($general-border-radius);
+  }
+}
+
 .daterangepicker .ranges .btn {
   margin-top: 10px;
 }

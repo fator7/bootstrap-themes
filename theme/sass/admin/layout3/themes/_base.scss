@@ -5,7 +5,11 @@ Boby
 ****/
 
 body {
-  background-color: $bg-color;  
+    background-color: $bg-color;  
+
+    &.page-md {
+        background: lighten($bg-color, 5%);
+    }
 }
  
 /******

@@ -275,3 +275,20 @@ Bootstrap input sizes
 .select2-container.input-sm .select2-choice .select2-arrow b {
     background-position: 0 0px;
 }
+
+
+/* Portlet full screen mode */
+
+.modal-open.page-portlet-fullscreen {
+    .select2-drop-mask {
+        z-index: $zindex-modal + 31;
+    }
+
+    .select2-drop {
+        z-index: $zindex-modal + 32;
+    }
+
+    .select2-search {
+        z-index: $zindex-modal + 33;
+    }
+}

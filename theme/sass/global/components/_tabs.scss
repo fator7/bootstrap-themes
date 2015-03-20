@@ -13,8 +13,10 @@ Customized Bootstrap Tabs
             font-size: 14px;
 
             > .badge { 
-                margin-top: -3px;
+                margin-top: -6px;
             }
+
+            @include border-radius($general-border-radius $general-border-radius 0 0);
         }
 
         .dropdown-menu {
@@ -141,7 +143,7 @@ Customized Bootstrap Tabs
     .active a:focus {
         @include border-radius(0 0 $general-border-radius $general-border-radius);              
         
-        border-color: transparent #ddd #ddd #ddd;
+        border-color: transparent #ddd #ddd #ddd  !important;     
     }
 }
 

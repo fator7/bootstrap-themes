@@ -35,3 +35,14 @@ Customized Progress Bars
 .progress > .progress-bar-warning {
     @include progress-bar-variant($brand-warning);
 }
+
+@if $theme-type == "material-design" {
+    .progress {
+        height: 8px;
+        border-radius: 0 !important;
+
+        &.progress-sm {
+            height: 6px;
+        }
+    }
+}
