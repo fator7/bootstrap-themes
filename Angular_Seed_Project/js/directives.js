@@ -1,6 +1,6 @@
 /**
  * INSPINIA - Responsive Admin Theme
- * Copyright 2014 Webapplayers.com
+ * Copyright 2015 Webapplayers.com
  *
  */
 
@@ -28,12 +28,14 @@ function pageTitle($rootScope, $timeout) {
 /**
  * sideNavigation - Directive for run metsiMenu on sidebar navigation
  */
-function sideNavigation() {
+function sideNavigation($timeout) {
     return {
         restrict: 'A',
         link: function(scope, element) {
             // Call the metsiMenu plugin and plug it to sidebar navigation
-            element.metisMenu();
+            $timeout(function(){
+                element.metisMenu();
+            });
         }
     };
 };
@@ -84,9 +86,16 @@ function minimalizaSidebar($timeout) {
                     // Hide menu in order to smoothly turn on when maximize menu
                     $('#side-menu').hide();
                     // For smoothly turn on menu
-                    $timeout(function () {
-                        $('#side-menu').fadeIn(500);
+                    setTimeout(
+                        function () {
+                            $('#side-menu').fadeIn(500);
                         }, 100);
+                } else if ($('body').hasClass('fixed-sidebar')){
+                    $('#side-menu').hide();
+                    setTimeout(
+                        function () {
+                            $('#side-menu').fadeIn(500);
+                        }, 300);
                 } else {
                     // Remove all inline style from jquery fadeIn function to reset menu state
                     $('#side-menu').removeAttr('style');
@@ -95,6 +104,8 @@ function minimalizaSidebar($timeout) {
         }
     };
 };
+
+
 
 /**
  *

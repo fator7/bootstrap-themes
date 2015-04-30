@@ -1,11 +1,13 @@
 /**
  * INSPINIA - Responsive Admin Theme
- * Copyright 2014 Webapplayers.com
+ * Copyright 2015 Webapplayers.com
  *
  */
 (function () {
     angular.module('inspinia', [
-        'ui.router',
-        'ui.bootstrap',
+        'ui.router',                    // Routing
+        'oc.lazyLoad',                  // ocLazyLoad
+        'ui.bootstrap',                 // Ui Bootstrap
     ])
 })();
+

@@ -1,3 +1,9 @@
+<!--
+* INSPINIA - Responsive Admin Theme
+* Version 2.0
+*
+-->
+
 <!DOCTYPE html>
 <html ng-app="inspinia">
 
@@ -9,13 +15,16 @@
     <!-- Page title set in pageTitle directive -->
     <title page-title></title>
 
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
     <!-- Bootstrap and Fonts -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Main Inspinia CSS files -->
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link id="loadBefore" href="css/style.css" rel="stylesheet">
+
 
 </head>
 
@@ -23,31 +32,8 @@
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
 <body ng-controller="MainCtrl as main">
 
-<!-- Wrapper-->
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <div ng-include="'views/common/navigation.html'"></div>
-
-    <!-- Page wraper -->
-    <!-- ng-class with current state name give you the ability to extended customization your view -->
-    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
-
-        <!-- Page wrapper -->
-        <div ng-include="'views/common/topnavbar.html'"></div>
-
-        <!-- Main view  -->
-        <div ui-view></div>
-
-        <!-- Footer -->
-        <div ng-include="'views/common/footer.html'"></div>
-
-    </div>
-    <!-- End page wrapper-->
-
-</div>
-<!-- End wrapper-->
-
+<!-- Main view  -->
+<div ui-view></div>
 
 <!-- jQuery and Bootstrap -->
 <script src="js/jquery/jquery-2.1.1.min.js"></script>
@@ -57,21 +43,21 @@
 <!-- MetsiMenu -->
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
-<!-- Peace JS -->
-<script src="js/plugins/pace/pace.min.js"></script>
-
 <!-- SlimScroll -->
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Peace JS -->
+<script src="js/plugins/pace/pace.min.js"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 
-<!-- Angular scripts-->
+<!-- Main Angular scripts-->
 <script src="js/angular/angular.min.js"></script>
+<script src="js/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
 <script src="js/ui-router/angular-ui-router.min.js"></script>
-<script src="js/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+<script src="js/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
 
-<!-- Angular Dependiences -->
 
 <!-- Anglar App Script -->
 <script src="js/app.js"></script>
