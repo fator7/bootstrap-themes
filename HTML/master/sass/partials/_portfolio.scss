@@ -4,7 +4,7 @@
 	a {
 		display: inline-block;
 	}
-	.fa {
+	.fa, .icons {
 		font-size: 2.5em;
 	}
 	.portfolio-nav,
@@ -12,41 +12,46 @@
 		margin-top: 11px;
 	}
 	.portfolio-nav {
-		text-align: right;
+		text-align: $right;
 	}
 	.portfolio-nav a {
 		width: 40%;
 	}
-	.portfolio-nav-all .fa {
+	.portfolio-nav-all .fa,
+	.portfolio-nav-all .icons {
 		font-size: 2.7em;
 	}
 	.fa-angle-right {
-		text-align: right;
+		text-align: $right;
 	}
 	.portfolio-nav-prev {
-		text-align: left;
+		text-align: $left;
+		@include if-rtl {
+			margin-right: 15px;
+			float: left;
+		}
 	}
 }
 
 /* Portfolio Info */
 .portfolio-info {
 	margin: 2px 0 10px;
-	float: right;
+	float: $right;
 	ul {
 		list-style: none;
 		padding: 0;
 		margin: 0;
 		li {
 			display: inline-block;
-			border-right: 1px solid #E6E6E6;
+			border-#{$right}: 1px solid #E6E6E6;
 			color: #B1B1B1;
-			padding-right: 8px;
-			margin-right: 8px;
+			padding-#{$right}: 8px;
+			margin-#{$right}: 8px;
 			font-size: 0.9em;
 			&:last-child {
-				border-right: 0;
-				padding-right: 0;
-				margin-right: 0;
+				border-#{$right}: 0;
+				padding-#{$right}: 0;
+				margin-#{$right}: 0;
 			}
 			a {
 				text-decoration: none;
@@ -57,8 +62,8 @@
 					}
 				}
 			}
-			.fa {
-				margin-right: 4px;
+			.fa, .icons {
+				margin-#{$right}: 4px;
 			}
 		}
 	}
@@ -71,6 +76,7 @@ ul {
 		margin: 0;
 		padding: 0;
 		.portfolio-item {
+			position: relative;
 			margin-bottom: 35px;
 		}
 	}
@@ -81,9 +87,9 @@ ul {
 	&.portfolio-details {
 		list-style: none;
 		padding: 0;
-		margin: 45px 0 0 5px;
+		margin: side-values(45px 0 0 5px);
 		font-size: 0.9em;
-		li {
+		> li {
 			padding: 0;
 			margin: 0 0 20px;
 		}
@@ -96,9 +102,15 @@ ul {
 			margin: 15px 0 0;
 			color: #999;
 		}
-		ul.list-skills li {
-			margin-right: 10px;
-			margin-bottom: 5px;
+		.list-icons {
+			margin-#{$left}: 0;
+			> li {
+				padding-#{$left}: 18px;
+				margin-#{$right}: 10px;
+				.fa, .icons {
+					top: 7px;
+				}
+			}
 		}
 	}
 }

@@ -2,7 +2,7 @@
 /*
 Name: 			Contact Form
 Written by: 	Okler Themes - (http://www.okler.net)
-Version: 		3.3.2
+Version: 		4.0.0
 */
 
 session_cache_limiter('nocache');

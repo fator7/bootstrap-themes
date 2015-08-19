@@ -26,6 +26,13 @@
 		font-weight: 800;
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 	}
+	.featured-label {
+		color: #FFF;
+		font-size: 52px;
+		line-height: 52px;
+		font-weight: 800;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	}
 	.bottom-label {
 		color: #FFF;
 		font-size: 20px;
@@ -35,7 +42,7 @@
 		color: #BAB9BE;
 		font-size: 46px;
 		line-height: 46px;
-		font-family: $font-secundary;
+		font-family: $font-secondary;
 		text-transform: uppercase;
 	}
 	.tp-caption {
@@ -51,7 +58,7 @@
 			position: absolute;
 			top: 0;
 			width: 100%;
-			left: 0 !important;
+			#{$left}: 0 !important;
 			video {
 				height: 100%;
 				width: 100%;
@@ -59,6 +66,21 @@
 				position: relative;
 			}
 		}
+	}
+	.top-label-dark, .main-label-dark, .bottom-label-dark {
+		color: #333;
+	}
+	.tp-caption-dark a {
+		color: #333;
+		&:hover {
+			color: #333;
+		}
+	}
+	.tp-opacity-overlay {
+		background: rgba(0,0,0,0.85);
+	}
+	&.transparent {
+		background-color: transparent;
 	}
 	&.light {
 		background-color: #EAEAEA;
@@ -99,8 +121,8 @@
 			visibility: hidden;
 		}
 		.center-caption {
-			left: 0 !important;
-			margin-left: 0 !important;
+			#{$left}: 0 !important;
+			margin-#{$left}: 0 !important;
 			text-align: center;
 			width: 100%;
 		}
@@ -114,8 +136,8 @@
 		line-height: 20px;
 		padding-bottom: 20px;
 		padding-top: 20px;
-		padding-left: 25px;
-		padding-right: 25px;
+		padding-#{$left}: 25px;
+		padding-#{$right}: 25px;
 	}
 }
 
@@ -136,18 +158,57 @@
 			box-shadow: none;
 			margin-top: 10px;
 			img {
-				border-radius: 10px 10px 0px 0px;
+				border-radius: corner-values(10px 10px 0px 0px);
 			}
 		}
 		.nivo-controlNav {
 			margin-top: -72px;
 			position: absolute;
 			z-index: 100;
-			right: 5px;
+			#{$right}: 5px;
 			bottom: -17px;
 		}
 		.nivo-caption {
-			padding-left: 20px;
+			padding-#{$left}: 20px;
 		}
 	}
+}
+
+/* Slider With Overlay */
+.slider-with-overlay {
+	position: relative;
+	.slider-container {
+		z-index: auto;
+	}
+}
+
+/* Slider Contact Form */
+.slider-contact-form {
+	margin: -45px 0 25px;
+	.featured-box {
+		text-align: $left;
+	}
+	label.error {
+		display: none !important;
+	}
+	.alert {
+		padding: 6px;
+		text-align: center;
+	}
+	textarea {
+		resize: none;
+	}
+}
+
+/* Responsive */
+@media (min-width: 992px) {
+
+	.slider-contact-form {
+		margin: 0;
+		position: absolute;
+		top: 20px;
+		z-index: 99;
+		width: 100%;
+	}
+
 }

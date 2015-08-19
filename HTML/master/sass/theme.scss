@@ -4,13 +4,16 @@ Written by: 	Okler Themes - (http://www.okler.net)
 Version: 		@@version
 */
 
-//COMMON IMPORTS
+// COMMON IMPORTS
 @import "config/imports";
 
 // BASE
 @import "base/base";
 @import "base/header";
-@import "base/page-top";
+@import "base/page-header";
+
+// HELPERS
+@import "config/helpers";
 
 // GUI
 @import "gui/parallax";

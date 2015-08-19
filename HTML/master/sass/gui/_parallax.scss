@@ -5,20 +5,15 @@
 	margin: 70px 0;
 	padding: 50px 0;
 	position: relative;
-	&.parallax-ready {
-		background-attachment: fixed;
-	}
-	&.parallax-disabled {
-		background-attachment: scroll !important;
-		background-position: 50% 50% !important;
-	}
+	clear: both;
+
 	blockquote {
 		border: 0;
 		padding: 0 10%;
 		i.fa-quote-left {
 			font-size: 34px;
 			position: relative;
-			left: -5px;
+			#{$left}: -5px;
 		}
 		p {
 			font-size: 24px;
@@ -29,8 +24,17 @@
 			line-height: 20px;
 			color: #999;
 			position: relative;
-			left: -5px;
+			#{$left}: -5px;
 		}
+	}
+
+	&.parallax-ready {
+		background-attachment: fixed;
+	}
+
+	&.parallax-disabled {
+		background-attachment: scroll !important;
+		background-position: 50% 50% !important;
 	}
 }
 
