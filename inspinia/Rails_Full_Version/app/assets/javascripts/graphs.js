@@ -10,3 +10,6 @@
 //= require morris/morris.js
 //= require rickshaw/vendor/d3.v3.js
 //= require rickshaw/rickshaw.min.js
+//= require chartist/chartist.min.js
+//= require d3/d3.min.js
+//= require c3/c3.min.js

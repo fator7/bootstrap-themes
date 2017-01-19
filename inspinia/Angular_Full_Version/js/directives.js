@@ -1,13 +1,11 @@
 /**
  * INSPINIA - Responsive Admin Theme
- * Copyright 2015 Webapplayers.com
  *
  * Main directives.js file
  * Define directives for used plugin
  *
  *
  * Functions (directives)
- *  - pageTitle
  *  - sideNavigation
  *  - iboxTools
  *  - minimalizaSidebar
@@ -17,7 +15,21 @@
  *  - ionRangeSlider
  *  - dropZone
  *  - responsiveVideo
-
+ *  - chatSlimScroll
+ *  - customValid
+ *  - fullScroll
+ *  - closeOffCanvas
+ *  - clockPicker
+ *  - landingScrollspy
+ *  - fitHeight
+ *  - iboxToolsFullScreen
+ *  - slimScroll
+ *  - truncate
+ *  - touchSpin
+ *  - markdownEditor
+ *  - resizeable
+ *  - bootstrapTagsinput
+ *  - passwordMeter
  *
  */
 
@@ -54,6 +66,23 @@ function sideNavigation($timeout) {
                 element.metisMenu();
 
             });
+
+            // Colapse menu in mobile mode after click on element
+            var menuElement = $('#side-menu a:not([href$="\\#"])');
+            menuElement.click(function(){
+                if ($(window).width() < 769) {
+                    $("body").toggleClass("mini-navbar");
+                }
+            });
+
+            // Enable initial fixed sidebar
+            if ($("body").hasClass('fixed-sidebar')) {
+                var sidebar = element.parent();
+                sidebar.slimScroll({
+                    height: '100%',
+                    railOpacity: 0.9,
+                });
+            }
         }
     };
 };
@@ -96,7 +125,7 @@ function iboxTools($timeout) {
             $scope.showhide = function () {
                 var ibox = $element.closest('div.ibox');
                 var icon = $element.find('i:first');
-                var content = ibox.find('div.ibox-content');
+                var content = ibox.children('.ibox-content');
                 content.slideToggle(200);
                 // Toggle icon from up to down
                 icon.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
@@ -105,7 +134,7 @@ function iboxTools($timeout) {
                     ibox.resize();
                     ibox.find('[id^=map-]').resize();
                 }, 50);
-            },
+            };
                 // Function for close ibox
                 $scope.closebox = function () {
                     var ibox = $element.closest('div.ibox');
@@ -113,7 +142,50 @@ function iboxTools($timeout) {
                 }
         }
     };
-};
+}
+
+/**
+ * iboxTools with full screen - Directive for iBox tools elements in right corner of ibox with full screen option
+ */
+function iboxToolsFullScreen($timeout) {
+    return {
+        restrict: 'A',
+        scope: true,
+        templateUrl: 'views/common/ibox_tools_full_screen.html',
+        controller: function ($scope, $element) {
+            // Function for collapse ibox
+            $scope.showhide = function () {
+                var ibox = $element.closest('div.ibox');
+                var icon = $element.find('i:first');
+                var content = ibox.children('.ibox-content');
+                content.slideToggle(200);
+                // Toggle icon from up to down
+                icon.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+                ibox.toggleClass('').toggleClass('border-bottom');
+                $timeout(function () {
+                    ibox.resize();
+                    ibox.find('[id^=map-]').resize();
+                }, 50);
+            };
+            // Function for close ibox
+            $scope.closebox = function () {
+                var ibox = $element.closest('div.ibox');
+                ibox.remove();
+            };
+            // Function for full screen
+            $scope.fullscreen = function () {
+                var ibox = $element.closest('div.ibox');
+                var button = $element.find('i.fa-expand');
+                $('body').toggleClass('fullscreen-ibox-mode');
+                button.toggleClass('fa-expand').toggleClass('fa-compress');
+                ibox.toggleClass('fullscreen');
+                setTimeout(function() {
+                    $(window).trigger('resize');
+                }, 100);
+            }
+        }
+    };
+}
 
 /**
  * minimalizaSidebar - Directive for minimalize sidebar
@@ -131,14 +203,14 @@ function minimalizaSidebar($timeout) {
                     // For smoothly turn on menu
                     setTimeout(
                         function () {
-                            $('#side-menu').fadeIn(500);
-                        }, 100);
+                            $('#side-menu').fadeIn(400);
+                        }, 200);
                 } else if ($('body').hasClass('fixed-sidebar')){
                     $('#side-menu').hide();
                     setTimeout(
                         function () {
-                            $('#side-menu').fadeIn(500);
-                        }, 300);
+                            $('#side-menu').fadeIn(400);
+                        }, 100);
                 } else {
                     // Remove all inline style from jquery fadeIn function to reset menu state
                     $('#side-menu').removeAttr('style');
@@ -171,7 +243,7 @@ function vectorMap() {
             myMapData: '=',
         },
         link: function (scope, element, attrs) {
-            element.vectorMap({
+            var map = element.vectorMap({
                 map: 'world_mill_en',
                 backgroundColor: "transparent",
                 regionStyle: {
@@ -192,6 +264,12 @@ function vectorMap() {
                         }
                     ]
                 },
+            });
+            var destroyMap = function(){
+                element.remove();
+            };
+            scope.$on('$destroy', function() {
+                destroyMap();
             });
         }
     }
@@ -278,27 +356,49 @@ function ionRangeSlider() {
  * dropZone - Directive for Drag and drop zone file upload plugin
  */
 function dropZone() {
-    return function(scope, element, attrs) {
-        element.dropzone({
-            url: "/upload",
-            maxFilesize: 100,
-            paramName: "uploadfile",
-            maxThumbnailFilesize: 5,
-            init: function() {
-                scope.files.push({file: 'added'});
-                this.on('success', function(file, json) {
-                });
-                this.on('addedfile', function(file) {
-                    scope.$apply(function(){
-                        alert(file);
-                        scope.files.push({file: 'added'});
+    return {
+        restrict: 'C',
+        link: function(scope, element, attrs) {
+
+            var config = {
+                url: 'http://localhost:8080/upload',
+                maxFilesize: 100,
+                paramName: "uploadfile",
+                maxThumbnailFilesize: 10,
+                parallelUploads: 1,
+                autoProcessQueue: false
+            };
+
+            var eventHandlers = {
+                'addedfile': function(file) {
+                    scope.file = file;
+                    if (this.files[1]!=null) {
+                        this.removeFile(this.files[0]);
+                    }
+                    scope.$apply(function() {
+                        scope.fileAdded = true;
                     });
-                });
-                this.on('drop', function(file) {
-                    alert('file');
-                });
+                },
+
+                'success': function (file, response) {
+                }
+
+            };
+
+            dropzone = new Dropzone(element[0], config);
+
+            angular.forEach(eventHandlers, function(handler, event) {
+                dropzone.on(event, handler);
+            });
+
+            scope.processDropzone = function() {
+                dropzone.processQueue();
+            };
+
+            scope.resetDropzone = function() {
+                dropzone.removeAllFiles();
             }
-        });
+        }
     }
 }
 
@@ -365,6 +465,146 @@ function fullScroll($timeout){
 }
 
 /**
+ * slimScroll - Directive for slimScroll with custom height
+ */
+function slimScroll($timeout){
+    return {
+        restrict: 'A',
+        scope: {
+            boxHeight: '@'
+        },
+        link: function(scope, element) {
+            $timeout(function(){
+                element.slimscroll({
+                    height: scope.boxHeight,
+                    railOpacity: 0.9
+                });
+
+            });
+        }
+    };
+}
+
+/**
+ * clockPicker - Directive for clock picker plugin
+ */
+function clockPicker() {
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+                element.clockpicker();
+        }
+    };
+};
+
+
+/**
+ * landingScrollspy - Directive for scrollspy in landing page
+ */
+function landingScrollspy(){
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.scrollspy({
+                target: '.navbar-fixed-top',
+                offset: 80
+            });
+        }
+    }
+}
+
+/**
+ * fitHeight - Directive for set height fit to window height
+ */
+function fitHeight(){
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+            element.css("height", $(window).height() + "px");
+            element.css("min-height", $(window).height() + "px");
+        }
+    };
+}
+
+/**
+ * truncate - Directive for truncate string
+ */
+function truncate($timeout){
+    return {
+        restrict: 'A',
+        scope: {
+            truncateOptions: '='
+        },
+        link: function(scope, element) {
+            $timeout(function(){
+                element.dotdotdot(scope.truncateOptions);
+
+            });
+        }
+    };
+}
+
+
+/**
+ * touchSpin - Directive for Bootstrap TouchSpin
+ */
+function touchSpin() {
+    return {
+        restrict: 'A',
+        scope: {
+            spinOptions: '='
+        },
+        link: function (scope, element, attrs) {
+            scope.$watch(scope.spinOptions, function(){
+                render();
+            });
+            var render = function () {
+                $(element).TouchSpin(scope.spinOptions);
+            };
+        }
+    }
+};
+
+/**
+ * markdownEditor - Directive for Bootstrap Markdown
+ */
+function markdownEditor() {
+    return {
+        restrict: "A",
+        require:  'ngModel',
+        link:     function (scope, element, attrs, ngModel) {
+            $(element).markdown({
+                savable:false,
+                onChange: function(e){
+                    ngModel.$setViewValue(e.getContent());
+                }
+            });
+        }
+    }
+};
+
+
+/**
+ * passwordMeter - Directive for jQuery Password Strength Meter
+ */
+function passwordMeter() {
+    return {
+        restrict: 'A',
+        scope: {
+            pwOptions: '='
+        },
+        link: function (scope, element, attrs) {
+            scope.$watch(scope.pwOptions, function(){
+                render();
+            });
+            var render = function () {
+                $(element).pwstrength(scope.pwOptions);
+            };
+        }
+    }
+};
+
+/**
  *
  * Pass all functions into module
  */
@@ -384,3 +624,12 @@ angular
     .directive('customValid', customValid)
     .directive('fullScroll', fullScroll)
     .directive('closeOffCanvas', closeOffCanvas)
+    .directive('clockPicker', clockPicker)
+    .directive('landingScrollspy', landingScrollspy)
+    .directive('fitHeight', fitHeight)
+    .directive('iboxToolsFullScreen', iboxToolsFullScreen)
+    .directive('slimScroll', slimScroll)
+    .directive('truncate', truncate)
+    .directive('touchSpin', touchSpin)
+    .directive('markdownEditor', markdownEditor)
+    .directive('passwordMeter', passwordMeter);

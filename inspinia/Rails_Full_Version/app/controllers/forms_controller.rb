@@ -14,4 +14,7 @@ class FormsController < ApplicationController
   def text_editor
   end
 
+  def markdown
+  end
+
 end

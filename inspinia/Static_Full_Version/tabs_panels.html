@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Tabs & Panels</title>
+    <title>INSPINIA | Panels</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -21,7 +21,7 @@
 
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="side-menu">
+            <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
                             <img alt="image" class="img-circle" src="img/profile_small.jpg" />
@@ -43,30 +43,33 @@
                 </li>
                 <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li ><a href="index.html">Dashboard v.1</a></li>
-                        <li ><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li ><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li ><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="index.html">Dashboard v.1</a></li>
+                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
+                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span> <span class="label label-primary pull-right">NEW</span></a>
+                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="graph_flot.html">Flot Charts</a></li>
                         <li><a href="graph_morris.html">Morris.js Charts</a></li>
                         <li><a href="graph_rickshaw.html">Rickshaw Charts</a></li>
                         <li><a href="graph_chartjs.html">Chart.js</a></li>
+                        <li><a href="graph_chartist.html">Chartist</a></li>
+                        <li><a href="c3.html">c3 charts</a></li>
                         <li><a href="graph_peity.html">Peity Charts</a></li>
                         <li><a href="graph_sparkline.html">Sparkline Charts</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="mailbox.html">Inbox</a></li>
                         <li><a href="mail_detail.html">Email view</a></li>
                         <li><a href="mail_compose.html">Compose email</a></li>
@@ -74,28 +77,38 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span> </a>
+                    <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span>  </a>
+                </li>
+                <li>
+                    <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="form_basic.html">Basic form</a></li>
                         <li><a href="form_advanced.html">Advanced Plugins</a></li>
                         <li><a href="form_wizard.html">Wizard</a></li>
                         <li><a href="form_file_upload.html">File Upload</a></li>
                         <li><a href="form_editors.html">Text Editor</a></li>
+                        <li><a href="form_autocomplete.html">Autocomplete</a></li>
+                        <li><a href="form_markdown.html">Markdown</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="contacts.html">Contacts</a></li>
                         <li><a href="profile.html">Profile</a></li>
+                        <li><a href="profile_2.html">Profile v.2</a></li>
+                        <li><a href="contacts_2.html">Contacts v.2</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="project_detail.html">Project detail</a></li>
+                        <li><a href="activity_stream.html">Activity stream</a></li>
                         <li><a href="teams_board.html">Teams board</a></li>
+                        <li><a href="social_feed.html">Social feed</a></li>
                         <li><a href="clients.html">Clients</a></li>
                         <li><a href="full_height.html">Outlook view</a></li>
+                        <li><a href="vote_list.html">Vote list</a></li>
                         <li><a href="file_manager.html">File manager</a></li>
                         <li><a href="calendar.html">Calendar</a></li>
                         <li><a href="issue_tracker.html">Issue tracker</a></li>
@@ -108,7 +121,7 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="search_results.html">Search results</a></li>
                         <li><a href="lockscreen.html">Lockscreen</a></li>
                         <li><a href="invoice.html">Invoice</a></li>
@@ -123,22 +136,35 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span><span class="label label-info pull-right">NEW</span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="toastr_notifications.html">Notification</a></li>
                         <li><a href="nestable_list.html">Nestable list</a></li>
                         <li><a href="agile_board.html">Agile board</a></li>
                         <li><a href="timeline_2.html">Timeline v.2</a></li>
                         <li><a href="diff.html">Diff</a></li>
+                        <li><a href="pdf_viewer.html">PDF viewer</a></li>
+                        <li><a href="i18support.html">i18 support</a></li>
+                        <li><a href="sweetalert.html">Sweet alert</a></li>
                         <li><a href="idle_timer.html">Idle timer</a></li>
+                        <li><a href="truncate.html">Truncate</a></li>
+                        <li><a href="password_meter.html">Password meter</a></li>
                         <li><a href="spinners.html">Spinners</a></li>
+                        <li><a href="spinners_usage.html">Spinners usage</a></li>
                         <li><a href="tinycon.html">Live favicon</a></li>
                         <li><a href="google_maps.html">Google maps</a></li>
+                        <li><a href="datamaps.html">Datamaps</a></li>
+                        <li><a href="social_buttons.html">Social buttons</a></li>
                         <li><a href="code_editor.html">Code editor</a></li>
                         <li><a href="modal_window.html">Modal window</a></li>
+                        <li><a href="clipboard.html">Clipboard</a></li>
+                        <li><a href="text_spinners.html">Text spinners</a></li>
                         <li><a href="forum_main.html">Forum view</a></li>
                         <li><a href="validation.html">Validation</a></li>
                         <li><a href="tree_view.html">Tree view</a></li>
+                        <li><a href="loading_buttons.html">Loading buttons</a></li>
                         <li><a href="chat_view.html">Chat view</a></li>
+                        <li><a href="masonry.html">Masonry</a></li>
+                        <li><a href="tour.html">Tour</a></li>
                     </ul>
                 </li>
                 <li class="active">
@@ -146,11 +172,13 @@
                     <ul class="nav nav-second-level">
                         <li><a href="typography.html">Typography</a></li>
                         <li><a href="icons.html">Icons</a></li>
-                        <li><a href="draggable_panels.html">Draggable Panels</a></li>
+                        <li><a href="draggable_panels.html">Draggable Panels</a></li> <li><a href="resizeable_panels.html">Resizeable Panels</a></li>
                         <li><a href="buttons.html">Buttons</a></li>
                         <li><a href="video.html">Video</a></li>
-                        <li class="active"><a href="tabs_panels.html">Tabs & Panels</a></li>
+                        <li class="active"><a href="tabs_panels.html">Panels</a></li>
+                        <li><a href="tabs.html">Tabs</a></li>
                         <li><a href="notifications.html">Notifications & Tooltips</a></li>
+                        <li><a href="helper_classes.html">Helper css classes</a></li>
                         <li><a href="badges_labels.html">Badges, Labels, Progress</a></li>
                     </ul>
                 </li>
@@ -160,23 +188,37 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="table_basic.html">Static Tables</a></li>
                         <li><a href="table_data_tables.html">Data Tables</a></li>
+                        <li><a href="table_foo_table.html">Foo Tables</a></li>
                         <li><a href="jq_grid.html">jqGrid</a></li>
                     </ul>
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">E-commerce</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="ecommerce_products_grid.html">Products grid</a></li>
+                        <li><a href="ecommerce_product_list.html">Products list</a></li>
+                        <li><a href="ecommerce_product.html">Product edit</a></li>
+                        <li><a href="ecommerce_product_detail.html">Product detail</a></li>
+                        <li><a href="ecommerce-cart.html">Cart</a></li>
+                        <li><a href="ecommerce-orders.html">Orders</a></li>
+                        <li><a href="ecommerce_payments.html">Credit Card form</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="basic_gallery.html">Lightbox Gallery</a></li>
-                        <li><a href="carousel.html">Bootstrap Carusela</a></li>
+                        <li><a href="slick_carousel.html">Slick Carousel</a></li>
+                        <li><a href="carousel.html">Bootstrap Carousel</a></li>
 
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -203,7 +245,7 @@
                     <a href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS Animations </span><span class="label label-info pull-right">62</span></a>
                 </li>
                 <li class="landing_link">
-                    <a target="_blank" href="Landing_page/index.html"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right">NEW</span></a>
+                    <a target="_blank" href="landing.html"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right">NEW</span></a>
                 </li>
                 <li class="special_link">
                     <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
@@ -336,7 +378,7 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Tabs & Panels</h2>
+                    <h2>Panels</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">Home</a>
@@ -345,7 +387,7 @@
                             <a>UI Elements</a>
                         </li>
                         <li class="active">
-                            <strong>Tabs & Panels</strong>
+                            <strong>Panels</strong>
                         </li>
                     </ol>
                 </div>
@@ -390,104 +432,138 @@
                             </small>
                         </p>
                     </div>
+                    <div class="ibox-footer">
+                        <span class="pull-right">
+                          The righ side of the footer
+                    </span>
+                        This is simple footer example
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ibox collapsed">
+                    <div class="ibox-title">
+                        <h5>Example of initial collapsed panel</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <p>
+                            Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
+                        <p>
+                            Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Example with fullscreen option</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="fullscreen-link">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <p>
+                            Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
+                        <p>
+                            Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Example of constant height with scroll</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="scroll_content">
+                            <p>
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                            </p>
+
+                            <p>
+                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                                pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+                                dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                                pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                            </p>
+                            <p>
+                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                                pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                            </p>
+                            <p>
+                                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                                pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel blank-panel">
 
-                        <div class="panel-heading">
-                            <div class="panel-title m-b-md"><h4>Blank Panel with text tabs</h4></div>
-                            <div class="panel-options">
-
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#tab-1">First Tab</a></li>
-                                    <li class=""><a data-toggle="tab" href="#tab-2">Second Tab</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <div class="tab-content">
-                                <div id="tab-1" class="tab-pane active">
-                                    <strong>Lorem ipsum dolor sit amet, consectetuer adipiscing</strong>
-
-                                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-
-                                    <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When.</p>
-                                </div>
-
-                                <div id="tab-2" class="tab-pane">
-                                    <strong>Donec quam felis</strong>
-
-                                    <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath </p>
-
-                                    <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet.</p>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="panel blank-panel">
-
-                        <div class="panel-heading">
-                            <div class="panel-title m-b-md"><h4>Blank Panel with icons tabs</h4></div>
-                            <div class="panel-options">
-
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#tab-4"><i class="fa fa-laptop"></i></a></li>
-                                    <li class=""><a data-toggle="tab" href="#tab-5"><i class="fa fa-desktop"></i></a></li>
-                                    <li class=""><a data-toggle="tab" href="#tab-6"><i class="fa fa-signal"></i></a></li>
-                                    <li class=""><a data-toggle="tab" href="#tab-7"><i class="fa fa-bar-chart-o"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <div class="tab-content">
-                                <div id="tab-4" class="tab-pane active">
-                                    <strong>Donec quam felis</strong>
-
-                                    <p>Who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee </p>
-
-                                    <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, </p>
-                                </div>
-
-                                <div id="tab-5" class="tab-pane">
-                                    <strong>One morning, when Gregor Samsa.</strong>
-
-                                    <p>Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. </p>
-                                    <p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. </p>
-                                </div>
-                                <div id="tab-6" class="tab-pane">
-                                    <strong>Lorem ipsum dolor sit</strong>
-
-                                    <p>Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz. Brawny gods just </p>
-
-                                    <p>Who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee </p>
-                                </div>
-                                <div id="tab-7" class="tab-pane">
-                                    <strong>Aenean imperdiet</strong>
-
-                                    <p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. </p>
-
-                                    <p>Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. </p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -654,7 +730,7 @@
                 10GB of <strong>250GB</strong> Free.
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
             </div>
         </div>
 
@@ -663,7 +739,7 @@
 
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -672,6 +748,18 @@
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
+<script>
+
+    $(document).ready(function () {
+
+        // Add slimscroll to element
+        $('.scroll_content').slimscroll({
+            height: '200px'
+        })
+
+    });
+
+</script>
 
 </body>
 

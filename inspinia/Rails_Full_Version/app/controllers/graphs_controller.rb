@@ -11,10 +11,16 @@ class GraphsController < ApplicationController
   def chartjs
   end
 
+  def chartist
+  end
+
   def peity
   end
 
   def sparkline
+  end
+
+  def c3charts
   end
 
 end

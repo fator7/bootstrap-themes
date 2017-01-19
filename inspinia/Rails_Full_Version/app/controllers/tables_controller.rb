@@ -5,6 +5,9 @@ class TablesController < ApplicationController
   def data_tables
   end
 
+  def foo_tables
+  end
+
   def jqgrid
   end
 

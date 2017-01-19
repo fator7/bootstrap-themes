@@ -1,6 +1,5 @@
 /**
  * INSPINIA - Responsive Admin Theme
- * Copyright 2015 Webapplayers.com
  *
  * Main controller.js file
  * Define controllers with data used in Inspinia theme
@@ -10,6 +9,7 @@
  *  - MainCtrl
  *  - dashboardFlotOne
  *  - dashboardFlotTwo
+ *  - dashboardFlotFive
  *  - dashboardMap
  *  - flotChartCtrl
  *  - rickshawChartCtrl
@@ -26,24 +26,83 @@
  *  - nestableCtrl
  *  - notifyCtrl
  *  - translateCtrl
+ *  - imageCrop
+ *  - diff
+ *  - idleTimer
+ *  - liveFavicon
+ *  - formValidation
+ *  - agileBoard
+ *  - draggablePanels
+ *  - chartistCtrl
+ *  - metricsCtrl
+ *  - sweetAlertCtrl
+ *  - selectCtrl
+ *  - toastrCtrl
+ *  - loadingCtrl
+ *  - datatablesCtrl
+ *  - truncateCtrl
+ *  - touchspinCtrl
+ *  - tourCtrl
+ *  - jstreeCtrl
+ *  - datamapsCtrl
+ *  - pdfCtrl
+ *  - passwordMeterCtrl
+ *
  *
  */
-
 
 /**
  * MainCtrl - controller
- * Contains severals global data used in diferent view
+ * Contains several global data used in different view
  *
  */
-function MainCtrl() {
+function MainCtrl($http) {
 
+    /**
+     * countries - Used as duallistbox in form advanced view
+     */
 
+    this.countries = [
+        { name: 'Amsterdam' },
+        { name: 'Washington' },
+        { name: 'Sydney' },
+        { name: 'Cairo' },
+        { name: 'Beijing' }];
+
+    this.getLocation = function(val) {
+        return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: val,
+                sensor: false
+            }
+        }).then(function(response){
+            return response.data.results.map(function(item){
+                return item.formatted_address;
+            });
+        });
+    };
+
+    /**
+     * daterange - Used as initial model for data range picker in Advanced form view
+     */
+    this.daterange = {startDate: null, endDate: null};
 
     /**
      * slideInterval - Interval for bootstrap Carousel, in milliseconds:
      */
     this.slideInterval = 5000;
 
+    /**
+     * tags - Used as advanced forms view in input tag control
+     */
+
+    this.tags = [
+        { text: 'Amsterdam' },
+        { text: 'Washington' },
+        { text: 'Sydney' },
+        { text: 'Cairo' },
+        { text: 'Beijing' }
+    ];
 
     /**
      * states - Data used in Advanced Form view for Chosen plugin
@@ -102,37 +161,6 @@ function MainCtrl() {
     ];
 
     /**
-     * persons - Data used in Tables view for Data Tables plugin
-     */
-    this.persons = [
-        {
-            id: '1',
-            firstName: 'Monica',
-            lastName: 'Smith'
-        },
-        {
-            id: '2',
-            firstName: 'Sandra',
-            lastName: 'Jackson'
-        },
-        {
-            id: '3',
-            firstName: 'John',
-            lastName: 'Underwood'
-        },
-        {
-            id: '4',
-            firstName: 'Chris',
-            lastName: 'Johnatan'
-        },
-        {
-            id: '5',
-            firstName: 'Kim',
-            lastName: 'Rosowski'
-        }
-    ];
-
-    /**
      * check's - Few variables for checkbox input used in iCheck plugin. Only for demo purpose
      */
     this.checkOne = true;
@@ -153,7 +181,7 @@ function MainCtrl() {
     this.bigTotalItems = 175;
     this.bigCurrentPage = 1;
     this.maxSize = 5;
-    this.singleModel = 1;
+    this.singleModel = false;
     this.radioModel = 'Middle';
     this.checkModel = {
         left: false,
@@ -396,7 +424,7 @@ function dashboardFlotOne() {
             borderWidth: 1,
             color: '#d5d5d5'
         },
-        colors: ["#1ab394", "#464f88"],
+        colors: ["#1ab394", "#1C84C6"],
         xaxis: {
         },
         yaxis: {
@@ -507,7 +535,7 @@ function dashboardFlotTwo() {
             grow:{stepMode:"linear"},
             data: data1,
             yaxis: 2,
-            color: "#464f88",
+            color: "#1C84C6",
             lines: {
                 lineWidth: 1,
                 show: true,
@@ -571,7 +599,7 @@ function dashboardFlotTwo() {
             noColumns: 1,
             labelBoxBorderColor: "#d5d5d5",
             position: "nw"
-        },
+        }
 
     };
 
@@ -585,6 +613,85 @@ function dashboardFlotTwo() {
      */
     this.flotData = dataset;
     this.flotOptions = options;
+}
+
+/**
+ * dashboardFlotFive - simple controller for data
+ * for Flot chart in Dashboard view
+ */
+function dashboardFive() {
+
+    var data1 = [
+        [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,20],[11,10],[12,13],[13,4],[14,7],[15,8],[16,12]
+    ];
+    var data2 = [
+        [0,0],[1,2],[2,7],[3,4],[4,11],[5,4],[6,2],[7,5],[8,11],[9,5],[10,4],[11,1],[12,5],[13,2],[14,5],[15,2],[16,0]
+    ];
+
+    var options = {
+        series: {
+            lines: {
+                show: false,
+                fill: true
+            },
+            splines: {
+                show: true,
+                tension: 0.4,
+                lineWidth: 1,
+                fill: 0.4
+            },
+            points: {
+                radius: 0,
+                show: true
+            },
+            shadowSize: 2
+        },
+        grid: {
+            hoverable: true,
+            clickable: true,
+
+            borderWidth: 2,
+            color: 'transparent'
+        },
+        colors: ["#1ab394", "#1C84C6"],
+        xaxis:{
+        },
+        yaxis: {
+        },
+        tooltip: false
+    };
+
+    /**
+     * Definition of variables
+     * Flot chart
+     */
+    this.flotData = [data1, data2];
+    this.flotOptions = options;
+
+
+    var sparkline1Data = [34, 43, 43, 35, 44, 32, 44, 52];
+    var sparkline1Options = {
+        type: 'line',
+        width: '100%',
+        height: '50',
+        lineColor: '#1ab394',
+        fillColor: "transparent"
+    };
+
+    var sparkline2Data = [32, 11, 25, 37, 41, 32, 34, 42];
+    var sparkline2Options = {
+        type: 'line',
+        width: '100%',
+        height: '50',
+        lineColor: '#1ab394',
+        fillColor: "transparent"
+    };
+
+    this.sparkline1 = sparkline1Data;
+    this.sparkline1Options = sparkline1Options;
+    this.sparkline2 = sparkline2Data;
+    this.sparkline2Options = sparkline2Options;
+
 }
 
 
@@ -603,7 +710,7 @@ function dashboardMap() {
         "AU": 760,
         "BR": 550,
         "IN": 200,
-        "GB": 120,
+        "GB": 120
     };
 
     this.data = data;
@@ -786,7 +893,7 @@ function flotChartCtrl() {
                 [13, 21]
             ]
         }
-    ]
+    ];
 
     /**
      * Line Area Chart Options
@@ -884,7 +991,7 @@ function flotChartCtrl() {
             hoverable: true,
             clickable: true,
             tickColor: "#D4D4D4",
-            borderWidth: 0,
+            borderWidth: 0
 
         },
         tooltip: true,
@@ -895,7 +1002,7 @@ function flotChartCtrl() {
             }
         }
 
-    }
+    };
 
     /**
      * Definition of variables
@@ -1400,56 +1507,56 @@ function widgetFlotChart() {
  * modalDemoCtrl - Controller used to run modal view
  * used in Basic form view
  */
-function modalDemoCtrl($scope, $modal) {
+function modalDemoCtrl($scope, $uibModal) {
 
     $scope.open = function () {
 
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'views/modal_example.html',
-            controller: ModalInstanceCtrl
+            controller: 'ModalInstanceCtrl'
         });
     };
 
     $scope.open1 = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'views/modal_example1.html',
-            controller: ModalInstanceCtrl
+            controller: 'ModalInstanceCtrl'
         });
     };
 
     $scope.open2 = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'views/modal_example2.html',
-            controller: ModalInstanceCtrl,
+            controller: 'ModalInstanceCtrl',
             windowClass: "animated fadeIn"
         });
     };
 
     $scope.open3 = function (size) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'views/modal_example3.html',
             size: size,
-            controller: ModalInstanceCtrl
+            controller: 'ModalInstanceCtrl'
         });
     };
 
     $scope.open4 = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'views/modal_example2.html',
-            controller: ModalInstanceCtrl,
+            controller: 'ModalInstanceCtrl',
             windowClass: "animated flipInY"
         });
     };
 };
 
-function ModalInstanceCtrl ($scope, $modalInstance) {
+function ModalInstanceCtrl ($scope, $uibModalInstance) {
 
     $scope.ok = function () {
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
 
@@ -1655,7 +1762,7 @@ function chartJsCtrl() {
         },
         {
             value: 200,
-            color: "#b5b8cf",
+            color: "#A4CEE8",
             highlight: "#1ab394",
             label: "Laptop"
         }
@@ -1698,7 +1805,7 @@ function chartJsCtrl() {
         },
         {
             value: 100,
-            color: "#b5b8cf",
+            color: "#A4CEE8",
             highlight: "#1ab394",
             label: "Laptop"
         }
@@ -2081,6 +2188,7 @@ function notifyCtrl($scope, notify) {
 function translateCtrl($translate, $scope) {
     $scope.changeLanguage = function (langKey) {
         $translate.use(langKey);
+        $scope.language = langKey;
     };
 }
 
@@ -2385,6 +2493,1046 @@ function draggablePanels($scope) {
 }
 
 /**
+ * chartistCtrl - Controller for Chartist library
+ */
+function chartistCtrl() {
+
+    this.lineData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        series: [
+            [12, 9, 7, 8, 5],
+            [2, 1, 3.5, 7, 3],
+            [1, 3, 4, 5, 6]
+        ]
+    }
+
+    this.lineOptions = {
+        fullWidth: true,
+        chartPadding: {
+            right: 40
+        }
+    }
+
+    var times = function (n) {
+        return Array.apply(null, new Array(n));
+    };
+
+    var prepareData = times(26).map(Math.random).reduce(function (data, rnd, index) {
+        data.labels.push(index + 1);
+        data.series.forEach(function (series) {
+            series.push(Math.random() * 100)
+        });
+
+        return data;
+    }, {
+        labels: [],
+        series: times(4).map(function () {
+            return new Array()
+        })
+    });
+
+    this.scatterData = prepareData;
+
+    this.scatterOptions = {
+        showLine: false,
+        axisX: {
+            labelInterpolationFnc: function (value, index) {
+                return index % 13 === 0 ? 'W' + value : null;
+            }
+        }
+    }
+
+    this.stackedData = {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        series: [
+            [800000, 1200000, 1400000, 1300000],
+            [200000, 400000, 500000, 300000],
+            [100000, 200000, 400000, 600000]
+        ]
+    }
+    this.stackedOptions = {
+        stackBars: true,
+        axisY: {
+            labelInterpolationFnc: function (value) {
+                return (value / 1000) + 'k';
+            }
+        }
+    }
+
+    this.horizontalData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        series: [
+            [5, 4, 3, 7, 5, 10, 3],
+            [3, 2, 9, 5, 4, 6, 4]
+        ]
+    }
+
+    this.horizontalOptions = {
+        seriesBarDistance: 10,
+        reverseData: true,
+        horizontalBars: true,
+        axisY: {
+            offset: 70
+        }
+    }
+
+    var prepareData = {
+        series: [5, 3, 4]
+    }
+
+    this.pieData = prepareData
+
+    var sum = function (a, b) {
+        return a + b
+    };
+
+    this.pieOptions = {
+        labelInterpolationFnc: function (value) {
+            return Math.round(value / prepareData.series.reduce(sum) * 100) + '%';
+        }
+    }
+
+    this.gaugeData = {
+        series: [20, 10, 30, 40]
+    }
+
+    this.gaugeOptions = {
+        donut: true,
+        donutWidth: 60,
+        startAngle: 270,
+        total: 200,
+        showLabel: false
+    }
+
+}
+
+/**
+ * metricsCtrl - Controller for data for all Sparkline chart
+ * used in Metrics view
+ */
+function metricsCtrl() {
+
+
+    this.demo1Data = [34, 43, 43, 35, 44, 32, 44, 52];
+    this.demo1Options = {
+        type: 'line',
+        width: '100%',
+        height: '60',
+        lineColor: '#1ab394',
+        fillColor: "#ffffff"
+    };
+
+    this.demo2Data = [24, 43, 43, 55, 44, 62, 44, 72];
+    this.demo2Options = {
+        type: 'line',
+        width: '100%',
+        height: '60',
+        lineColor: '#1ab394',
+        fillColor: "#ffffff"
+    };
+
+    this.demo3Data = [74, 43, 23, 55, 54, 32, 24, 12];
+    this.demo3Options = {
+        type: 'line',
+        width: '100%',
+        height: '60',
+        lineColor: '#ed5565',
+        fillColor: "#ffffff"
+    };
+
+    this.demo4Data = [24, 43, 33, 55, 64, 72, 44, 22];
+    this.demo4Options = {
+        type: 'line',
+        width: '100%',
+        height: '60',
+        lineColor: '#ed5565',
+        fillColor: "#ffffff"
+    };
+
+    this.demo5Data = [1, 4];
+    this.demo5Options = {
+        type: 'pie',
+        height: '140',
+        sliceColors: ['#1ab394', '#F5F5F5']
+    };
+
+    this.demo6Data = [5, 3];
+    this.demo6Options = {
+        type: 'pie',
+        height: '140',
+        sliceColors: ['#1ab394', '#F5F5F5']
+    };
+
+    this.demo7Data = [2, 2];
+    this.demo7Options = {
+        type: 'pie',
+        height: '140',
+        sliceColors: ['#ed5565', '#F5F5F5']
+    };
+
+    this.demo8Data = [2, 3];
+    this.demo8Options = {
+        type: 'pie',
+        height: '140',
+        sliceColors: ['#ed5565', '#F5F5F5']
+    };
+
+}
+
+
+
+/**
+ * sweetAlertCtrl - Function for Sweet alerts
+ */
+function sweetAlertCtrl($scope, SweetAlert) {
+
+
+    $scope.demo1 = function () {
+        SweetAlert.swal({
+            title: "Welcome in Alerts",
+            text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        });
+    }
+
+    $scope.demo2 = function () {
+        SweetAlert.swal({
+            title: "Good job!",
+            text: "You clicked the button!",
+            type: "success"
+        });
+    }
+
+    $scope.demo3 = function () {
+        SweetAlert.swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function () {
+                SweetAlert.swal("Ok!");
+            });
+    }
+
+    $scope.demo4 = function () {
+        SweetAlert.swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false },
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                } else {
+                    SweetAlert.swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
+    }
+
+}
+
+function selectCtrl($scope) {
+
+    $scope.person = {};
+    $scope.people = [
+        { name: 'Adam',      email: 'adam@email.com',      age: 12, country: 'United States' },
+        { name: 'Amalie',    email: 'amalie@email.com',    age: 12, country: 'Argentina' },
+        { name: 'Estefanía', email: 'estefania@email.com', age: 21, country: 'Argentina' },
+        { name: 'Adrian',    email: 'adrian@email.com',    age: 21, country: 'Ecuador' },
+        { name: 'Wladimir',  email: 'wladimir@email.com',  age: 30, country: 'Ecuador' },
+        { name: 'Samantha',  email: 'samantha@email.com',  age: 30, country: 'United States' },
+        { name: 'Nicole',    email: 'nicole@email.com',    age: 43, country: 'Colombia' },
+        { name: 'Natasha',   email: 'natasha@email.com',   age: 54, country: 'Ecuador' },
+        { name: 'Michael',   email: 'michael@email.com',   age: 15, country: 'Colombia' },
+        { name: 'Nicolás',   email: 'nicolas@email.com',    age: 43, country: 'Colombia' }
+    ];
+
+    $scope.option = {};
+    $scope.options = [
+        { number: '1',      text: 'Option 1' },
+        { number: '2',      text: 'Option 2' },
+        { number: '3',      text: 'Option 3' },
+        { number: '4',      text: 'Option 4' },
+        { number: '5',      text: 'Option 5' },
+        { number: '6',      text: 'Option 6' }
+    ];
+
+    $scope.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
+
+    $scope.multipleDemo = {};
+    $scope.multipleDemo.colors = ['Blue','Red'];
+
+}
+
+
+
+function toastrCtrl($scope, toaster){
+
+    $scope.demo1 = function(){
+        toaster.success({ body:"Hi, welcome to Inspinia. This is example of Toastr notification box."});
+    };
+
+    $scope.demo2 = function(){
+        toaster.warning({ title: "Title example", body:"This is example of Toastr notification box."});
+    };
+
+    $scope.demo3 = function(){
+        toaster.pop({
+            type: 'info',
+            title: 'Title example',
+            body: 'This is example of Toastr notification box.',
+            showCloseButton: true
+
+        });
+    };
+
+    $scope.demo4 = function(){
+        toaster.pop({
+            type: 'error',
+            title: 'Title example',
+            body: 'This is example of Toastr notification box.',
+            showCloseButton: true,
+            timeout: 600
+        });
+    };
+
+}
+
+function loadingCtrl($scope, $timeout){
+
+
+    $scope.runLoading = function() {
+        // start loading
+        $scope.loading = true;
+
+        $timeout(function(){
+            // Simulate some service
+            $scope.loading = false;
+        },2000)
+    };
+
+
+    // Demo purpose actions
+    $scope.runLoading1 = function () {
+        // start loading
+        $scope.loading1 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading1 = false;
+        }, 2000)
+    };
+    $scope.runLoading2 = function () {
+        // start loading
+        $scope.loading2 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading2 = false;
+        }, 2000)
+    };
+    $scope.runLoading3 = function () {
+        // start loading
+        $scope.loading3 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading3 = false;
+        }, 2000)
+    };
+    $scope.runLoading4 = function () {
+        // start loading
+        $scope.loading4 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading4 = false;
+        }, 2000)
+    };
+    $scope.runLoading5 = function () {
+        // start loading
+        $scope.loading5 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading5 = false;
+        }, 2000)
+    };
+    $scope.runLoading6 = function () {
+        // start loading
+        $scope.loading6 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading6 = false;
+        }, 2000)
+    };
+    $scope.runLoading7 = function () {
+        // start loading
+        $scope.loading7 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading7 = false;
+        }, 2000)
+    };
+    $scope.runLoading8 = function () {
+        // start loading
+        $scope.loading8 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading8 = false;
+        }, 2000)
+    };
+    $scope.runLoading9 = function () {
+        // start loading
+        $scope.loading9 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading9 = false;
+        }, 2000)
+    };
+    $scope.runLoading10 = function () {
+        // start loading
+        $scope.loading10 = true;
+
+        $timeout(function () {
+            // Simulate some service
+            $scope.loading10 = false;
+        }, 2000)
+    };
+    $scope.runLoading11 = function () {
+        // start loading
+        $timeout(function() {
+            $scope.loading11 = 0.1;
+        }, 500);
+        $timeout(function() {
+            $scope.loading11 += 0.2;
+        }, 1000);
+        $timeout(function() {
+            $scope.loading11 += 0.3;
+        }, 1500);
+        $timeout(function() {
+            $scope.loading11 = false;
+        }, 2000);
+
+    };
+    $scope.runLoading12 = function () {
+        // start loading
+        $timeout(function() {
+            $scope.loading12 = 0.1;
+        }, 500);
+        $timeout(function() {
+            $scope.loading12 += 0.2;
+        }, 1000);
+        $timeout(function() {
+            $scope.loading12 += 0.3;
+        }, 1500);
+        $timeout(function() {
+            $scope.loading12 = false;
+        }, 2000);
+
+    };
+
+    $scope.runLoadingDemo = function() {
+        // start loading
+        $scope.loadingDemo = true;
+
+        $timeout(function(){
+            // Simulate some service
+            $scope.loadingDemo = false;
+        },2000)
+    };
+
+
+}
+
+
+function datatablesCtrl($scope,DTOptionsBuilder){
+
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withDOM('<"html5buttons"B>lTfgitp')
+        .withButtons([
+            {extend: 'copy'},
+            {extend: 'csv'},
+            {extend: 'excel', title: 'ExampleFile'},
+            {extend: 'pdf', title: 'ExampleFile'},
+
+            {extend: 'print',
+                customize: function (win){
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+
+                    $(win.document.body).find('table')
+                        .addClass('compact')
+                        .css('font-size', 'inherit');
+                }
+            }
+        ]);
+
+    /**
+     * persons - Data used in Tables view for Data Tables plugin
+     */
+    $scope.persons = [
+        {
+            id: '1',
+            firstName: 'Monica',
+            lastName: 'Smith'
+        },
+        {
+            id: '2',
+            firstName: 'Sandra',
+            lastName: 'Jackson'
+        },
+        {
+            id: '3',
+            firstName: 'John',
+            lastName: 'Underwood'
+        },
+        {
+            id: '4',
+            firstName: 'Chris',
+            lastName: 'Johnatan'
+        },
+        {
+            id: '5',
+            firstName: 'Kim',
+            lastName: 'Rosowski'
+        }
+    ];
+
+}
+
+function truncateCtrl($scope){
+
+    $scope.truncateOptions = {
+        watch: 'window'
+    };
+
+    $scope.truncateOptions2 = {
+        watch: 'window',
+        ellipsis: ' ///...'
+    };
+
+    $scope.truncateOptions3 = {
+        watch: 'window',
+        wrap: 'letter'
+    }
+
+}
+
+function touchspinCtrl($scope) {
+
+    $scope.inputteresxcs = 55;
+    $scope.spinOption1 = {
+        min: 0,
+        max: 100,
+        step: 0.1,
+        decimals: 2,
+        boostat: 5,
+        maxboostedstep: 10,
+    };
+
+    $scope.spinOption2 = {
+        verticalbuttons: true
+    }
+
+    $scope.spinOption3 = {
+        postfix: '%'
+    }
+
+    $scope.spinOption4 = {
+        postfix: "a button",
+        postfix_extraclass: "btn btn-default"
+    }
+
+}
+
+function tourCtrl($scope){
+
+    $scope.preparebody = function(tour){
+        $('body').addClass('tour-open')
+    };
+
+    $scope.clearbody = function(tour){
+        $('body').removeClass('tour-close')
+    }
+
+}
+
+function jstreeCtrl($scope) {
+
+    $scope.treeConfig = {
+        'plugins' : [ 'types', 'dnd' ],
+        'types' : {
+            'default' : {
+                'icon' : 'fa fa-folder'
+            },
+            'html' : {
+                'icon' : 'fa fa-file-code-o'
+            },
+            'svg' : {
+                'icon' : 'fa fa-file-picture-o'
+            },
+            'css' : {
+                'icon' : 'fa fa-file-code-o'
+            },
+            'img' : {
+                'icon' : 'fa fa-file-image-o'
+            },
+            'js' : {
+                'icon' : 'fa fa-file-text-o'
+            }
+
+        }
+    };
+
+    $scope.treeData = [
+        {
+            "id": "ajson1",
+            "parent": "#",
+            "text": "Admin theme",
+            "state": {
+                "opened": true
+            },
+            "__uiNodeId": 1
+        }, {
+            "id": "ajson2",
+            "parent": "ajson1",
+            "text": "css",
+            "state": {
+                "opened": true
+            },
+            "__uiNodeId": 2
+        }, {
+            "id": "ajson3",
+            "parent": "ajson2",
+            "text": "animate.css",
+            "state": {
+                "opened": true
+            },
+            "type": "css",
+            "__uiNodeId": 3
+        },
+        {
+            "id": "ajson4",
+            "parent": "ajson2",
+            "text": "bootstrap.css",
+            "state": {
+                "opened": true
+            },
+            "type": "css",
+            "__uiNodeId": 4
+        },
+        {
+            "id": "ajson5",
+            "parent": "ajson2",
+            "text": "style.css",
+            "state": {
+                "opened": true
+            },
+            "type": "css",
+            "__uiNodeId": 5
+        },
+        {
+            "id": "ajson6",
+            "parent": "ajson1",
+            "text": "fonts",
+            "state": {
+                "opened": false
+            },
+            "__uiNodeId": 6
+        },
+        {
+            "id": "ajson9",
+            "parent": "ajson6",
+            "text": "glyphicons-halflings-regular.eot",
+            "state": {
+                "opened": true
+            },
+            "type":"img",
+            "__uiNodeId": 9
+        },
+        {
+            "id": "ajson10",
+            "parent": "ajson6",
+            "text": "glyphicons-halflings-regular.svg",
+            "state": {
+                "opened": true
+            },
+            "type":"svg",
+            "__uiNodeId": 10
+        },
+        {
+            "id": "ajson11",
+            "parent": "ajson6",
+            "text": "glyphicons-halflings-regular.ttf",
+            "state": {
+                "opened": true
+            },
+            "type":"img",
+            "__uiNodeId": 11
+        },
+        {
+            "id": "ajson12",
+            "parent": "ajson6",
+            "text": "glyphicons-halflings-regular.woff",
+            "state": {
+                "opened": true
+            },
+            "type":"img",
+            "__uiNodeId": 12
+        },
+        {
+            "id": "ajson7",
+            "parent": "ajson1",
+            "text": "img",
+            "state": {
+                "opened": true
+            },
+            "__uiNodeId": 7
+        },
+        {
+            "id": "ajson13",
+            "parent": "ajson7",
+            "text": "profile_small.jpg",
+            "state": {
+                "opened": true
+            },
+            "type": "img",
+            "__uiNodeId": 13
+        },
+        {
+            "id": "ajson14",
+            "parent": "ajson7",
+            "text": "angular_logo.png",
+            "state": {
+                "opened": true
+            },
+            "type": "img",
+            "__uiNodeId": 14
+        },
+        {
+            "id": "ajson15",
+            "parent": "ajson7",
+            "text": "html_logo.png",
+            "state": {
+                "opened": true
+            },
+            "li_attr": {"class": "text-navy"},
+            "type": "img",
+            "__uiNodeId": 15
+        },
+        {
+            "id": "ajson16",
+            "parent": "ajson7",
+            "text": "mvc_logo.png",
+            "state": {
+                "opened": true
+            },
+            "li_attr": {"class": "text-navy"},
+            "type": "img",
+            "__uiNodeId": 16
+        },
+        {
+            "id": "ajson8",
+            "parent": "ajson1",
+            "text": "js",
+            "state": {
+                "opened": true
+            },
+            "__uiNodeId": 8
+        },
+        {
+            "id": "ajson17",
+            "parent": "ajson8",
+            "text": "inspinia.js",
+            "state": {
+                "opened": true
+            },
+            "type":"js",
+            "__uiNodeId": 17
+        },
+        {
+            "id": "ajson18",
+            "parent": "ajson8",
+            "text": "bootstrap.js",
+            "state": {
+                "opened": true
+            },
+            "type":"js",
+            "__uiNodeId": 18
+        },
+        {
+            "id": "ajson19",
+            "parent": "ajson8",
+            "text": "jquery-2.1.1.js",
+            "state": {
+                "opened": true
+            },
+            "type":"js",
+            "__uiNodeId": 19
+        },
+        {
+            "id": "ajson20",
+            "parent": "ajson8",
+            "text": "jquery-ui.custom.min.js",
+            "state": {
+                "opened": true
+            },
+            "type":"js",
+            "__uiNodeId":20
+        },
+        {
+            "id": "ajson21",
+            "parent": "ajson1",
+            "text": "affix.html",
+            "type":"html",
+            "__uiNodeId":21
+        },
+        {
+            "id": "ajson22",
+            "parent": "ajson1",
+            "text": "dashboard.html",
+            "type":"html",
+            "__uiNodeId":22
+        },
+        {
+            "id": "ajson23",
+            "parent": "ajson1",
+            "text": "buttons.html",
+            "type":"html",
+            "__uiNodeId":23
+        },
+        {
+            "id": "ajson24",
+            "parent": "ajson1",
+            "text": "calendar.html",
+            "type":"html",
+            "__uiNodeId":24
+        },
+        {
+            "id": "ajson25",
+            "parent": "ajson1",
+            "text": "contacts.html",
+            "type":"html",
+            "__uiNodeId":25
+        },
+        {
+            "id": "ajson26",
+            "parent": "ajson1",
+            "text": "css_animation.html",
+            "type":"html",
+            "__uiNodeId":26
+        },
+        {
+            "id": "ajson27",
+            "parent": "ajson1",
+            "text": "flot_chart.html",
+            "type":"html",
+            "__uiNodeId":27
+        },
+        {
+            "id": "ajson28",
+            "parent": "ajson1",
+            "text": "google_maps.html",
+            "type":"html",
+            "__uiNodeId":28
+        },
+        {
+            "id": "ajson29",
+            "parent": "ajson1",
+            "text": "icons.html",
+            "type":"html",
+            "__uiNodeId":29
+        },
+        {
+            "id": "ajson30",
+            "parent": "ajson1",
+            "text": "invoice.html",
+            "type":"html",
+            "__uiNodeId":30
+        },
+        {
+            "id": "ajson31",
+            "parent": "ajson1",
+            "text": "login.html",
+            "type":"html",
+            "__uiNodeId":31
+        }
+    ]
+
+}
+
+function datamapsCtrl($scope) {
+
+    $scope.mapObject1 = {
+        scope: 'world',
+        responsive: true,
+        fills: {
+            defaultFill: "#DBDAD6"
+        },
+        geographyConfig: {
+            highlightFillColor: '#1C977A',
+            highlightBorderWidth: 0,
+        },
+    }
+
+    $scope.mapObject2 = {
+        scope: 'world',
+        responsive: true,
+        fills: {
+            defaultFill: "#DBDAD6",
+            active: "#2BA587"
+        },
+        geographyConfig: {
+            highlightFillColor: '#1C977A',
+            highlightBorderWidth: 0,
+        },
+        data: {
+            USA: { fillKey: "active" },
+            RUS: { fillKey: "active" },
+            DEU: { fillKey: "active" },
+            BRA: { fillKey: "active" }
+        }
+    }
+
+    $scope.mapObject3 = {
+        responsive: true,
+        scope: 'usa',
+        fills: {
+            defaultFill: "#DBDAD6",
+            active: "#2BA587"
+        },
+        geographyConfig: {
+            highlightFillColor: '#1C977A',
+            highlightBorderWidth: 0
+        },
+        data: {
+            NE: { fillKey: "active" },
+            CA: { fillKey: "active" },
+            NY: { fillKey: "active" },
+        }
+    }
+
+    $scope.mapObject4 = {
+        scope: 'world',
+        responsive: true,
+        fills: {
+            defaultFill: "#F2F2F0",
+            active: "#DBDAD6",
+            usa: "#269479"
+        },
+        geographyConfig: {
+            highlightFillColor: '#1C977A',
+            highlightBorderWidth: 0
+        },
+        data: {
+            USA: {fillKey: "usa"},
+            RUS: {fillKey: "active"},
+            DEU: {fillKey: "active"},
+            POL: {fillKey: "active"},
+            JAP: {fillKey: "active"},
+            AUS: {fillKey: "active"},
+            BRA: {fillKey: "active"}
+        }
+    };
+
+    $scope.mapPlugins = {
+        arc: {}
+    };
+
+    $scope.mapPluginData = {
+        arc: [
+            { origin: 'USA', destination: 'RUS'},
+            { origin: 'USA', destination: 'DEU'},
+            { origin: 'USA', destination: 'POL'},
+            { origin: 'USA', destination: 'JAP'},
+            { origin: 'USA', destination: 'AUS'},
+            { origin: 'USA', destination: 'BRA'}
+        ]
+    }
+
+
+
+}
+
+function pdfCtrl($scope) {
+    $scope.pdfUrl = './pdf/example.pdf';
+    $scope.httpHeaders = { Authorization: 'Bearer some-aleatory-token' };
+}
+
+function passwordMeterCtrl($scope){
+
+    var options1 = {};
+    options1.ui = {
+        container: "#pwd-container1",
+        showVerdictsInsideProgressBar: true,
+        viewports: {
+            progress: ".pwstrength_viewport_progress"
+        }
+    };
+    options1.common = {
+        debug: false,
+    };
+    $scope.option1 = options1;
+
+    var options2 = {};
+    options2.ui = {
+        container: "#pwd-container2",
+        showStatus: true,
+        showProgressBar: false,
+        viewports: {
+            verdict: ".pwstrength_viewport_verdict"
+        }
+    };
+    $scope.option2 = options2;
+
+    var options3 = {};
+    options3.ui = {
+        container: "#pwd-container3",
+        showVerdictsInsideProgressBar: true,
+        viewports: {
+            progress: ".pwstrength_viewport_progress2"
+        }
+    };
+    options3.common = {
+        debug: true,
+        usernameField: "#username"
+    };
+    $scope.option3 = options3;
+
+    var options4 = {};
+    options4.ui = {
+        container: "#pwd-container4",
+        viewports: {
+            progress: ".pwstrength_viewport_progress4",
+            verdict: ".pwstrength_viewport_verdict4"
+        }
+    };
+    options4.common = {
+        zxcvbn: true,
+        zxcvbnTerms: ['samurai', 'shogun', 'bushido', 'daisho', 'seppuku'],
+        userInputs: ['#year', '#familyname']
+    };
+    $scope.option4 = options4;
+
+
+
+}
+
+/**
  *
  * Pass all functions into module
  */
@@ -2393,6 +3541,7 @@ angular
     .controller('MainCtrl', MainCtrl)
     .controller('dashboardFlotOne', dashboardFlotOne)
     .controller('dashboardFlotTwo', dashboardFlotTwo)
+    .controller('dashboardFive', dashboardFive)
     .controller('dashboardMap', dashboardMap)
     .controller('flotChartCtrl', flotChartCtrl)
     .controller('rickshawChartCtrl', rickshawChartCtrl)
@@ -2416,4 +3565,18 @@ angular
     .controller('formValidation', formValidation)
     .controller('agileBoard', agileBoard)
     .controller('draggablePanels', draggablePanels)
+    .controller('chartistCtrl', chartistCtrl)
+    .controller('metricsCtrl', metricsCtrl)
+    .controller('sweetAlertCtrl', sweetAlertCtrl)
+    .controller('selectCtrl', selectCtrl)
+    .controller('toastrCtrl', toastrCtrl)
+    .controller('loadingCtrl', loadingCtrl)
+    .controller('datatablesCtrl', datatablesCtrl)
+    .controller('truncateCtrl', truncateCtrl)
+    .controller('touchspinCtrl', touchspinCtrl)
+    .controller('tourCtrl', tourCtrl)
+    .controller('jstreeCtrl', jstreeCtrl)
+    .controller('datamapsCtrl', datamapsCtrl)
+    .controller('pdfCtrl', pdfCtrl)
+    .controller('passwordMeterCtrl', passwordMeterCtrl);
 

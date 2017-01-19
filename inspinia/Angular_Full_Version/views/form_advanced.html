@@ -82,18 +82,18 @@
         </p>
 
         <div class="form-group">
-        <label class="font-noraml">Basic example with <strong>ng-model</strong></label>
+        <label class="font-normal">Basic example with <strong>ng-model</strong></label>
 
-        <div class="input-group">
-            <select chosen id="states" class="chosen-select" style="width:350px;" tabindex="4" ng-model="state" ng-options="s for s in main.states">
+        <div>
+            <select chosen id="states" class="chosen-select"  tabindex="4" ng-model="state" ng-options="s for s in main.states">
             </select>
         </div>
         </div>
         <div class="form-group">
-        <label class="font-noraml">Multi select</label>
+        <label class="font-normal">Multi select</label>
 
-        <div class="input-group">
-        <select multiple chosen class="chosen-select" style="width:350px;" tabindex="4">
+        <div>
+        <select multiple chosen class="chosen-select"  tabindex="4">
         <option value="">Select</option>
         <option value="United States">United States</option>
         <option value="United Kingdom">United Kingdom</option>
@@ -403,6 +403,141 @@
         </div>
     </div>
 </div>
+    <div class="row" ng-controller="touchspinCtrl">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>TouchSpin <small>http://www.virtuosoft.eu/code/bootstrap-touchspin/</small></h5>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        A mobile and touch friendly input spinner component for Bootstrap 3. It supports the mousewheel and the up/down keys.
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <p class="font-bold">
+                                Basic example with empty value
+                            </p>
+
+                            <input id="demo1" type="text"  name="demo1" touch-spin spin-options="spinOption1" ng-model="inputteresxcs">
+                        </div>
+                        <div class="col-md-4">
+                            <p class="font-bold">
+                                Example with postfix
+                            </p>
+                            <input id="demo3" type="text"  name="demo1" touch-spin spin-options="spinOption3" ng-model="inputteresxcs">
+                        </div>
+                        <div class="col-md-4">
+
+                            <p class="font-bold">
+                                Example with vertical button alignment:
+                            </p>
+                            <input id="demo2" type="text"  name="demo1" touch-spin spin-options="spinOption2" ng-model="inputteresxcs">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Dual Listbox</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">Config option 1</a>
+                            </li>
+                            <li><a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        Bootstrap Dual Listbox is a responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
+                    </p>
+
+                    <select
+                            ng-options="c.name for c in main.countries"
+                            multiple
+                            ng-model="selections"
+                            bs-duallistbox
+                            ></select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" data-ng-controller="selectCtrl">
+        <div class="col-lg-12">
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Select2 <small>https://select2.github.io/</small></h5>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                                Select2 is a jQuery based replacement for select boxes. It can take a regular select box and turn it into:
+                            </p>
+                            <ui-select ng-model="person.selected" theme="bootstrap">
+                                <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in people | filter: $select.search">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    <small ng-bind-html="item.email | highlight: $select.search"></small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <p>
+                                A placeholder value can be defined and will be displayed until a selection is made.
+                            </p>
+                            <ui-select ng-model="option.selected" theme="bootstrap">
+                                <ui-select-match placeholder="Select or search a person">{{$select.selected.text}}</ui-select-match>
+                                <ui-select-choices repeat="item in options | filter: $select.search">
+                                    <div ng-bind-html="item.text | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                Select2 also supports multi-value select boxes. The select below is declared with the multiple attribute.
+                            </p>
+                            <ui-select multiple ng-model="multipleDemo.colors" theme="bootstrap" ng-disabled="disabled" style="width: 300px;">
+                                <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
+                                <ui-select-choices repeat="color in availableColors | filter:$select.search">
+                                    {{color}}
+                                </ui-select-choices>
+                            </ui-select>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -451,102 +586,105 @@
         </p>
 
         <div class="form-group" id="data_1">
-            <label class="font-noraml">Simple date input format</label>
+            <label class="font-normal">Simple date input format</label>
 
             <div class="input-group date">
-                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="date">
+                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="date" auto-close="true" min-view="date" format="YYYY-MM-DD">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
 
         <div class="form-group" id="data_2">
-            <label class="font-noraml">One Year view</label>
+            <label class="font-normal">One Year view</label>
 
             <div class="input-group date">
-                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="year">
+                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="year" auto-close="true">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
 
         <div class="form-group" id="data_4">
-            <label class="font-noraml">Month select</label>
+            <label class="font-normal">Month select</label>
 
             <div class="input-group date">
-                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="month">
+                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="month" auto-close="true">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
 
         <div class="form-group" id="data_3">
-            <label class="font-noraml">Hours view</label>
+            <label class="font-normal">Hours view</label>
 
             <div class="input-group date">
-                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="hours">
+                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="hours" auto-close="true">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
 
 
         <div class="form-group" id="data_5">
-            <label class="font-noraml">Range select</label>
+            <label class="font-normal">Range select</label>
 
-            <div class="dropdown">
-                <a class="dropdown-toggle btn btn-primary btn-sm">
+            <div uib-dropdown>
+                <a class="btn btn-primary btn-sm" uib-dropdown-toggle>
                     Select range
                 </a>
-<span>
-                    Selected date: {{(a|date)}} - {{(b|date)}}
+                <div>
+                <span>
+                    Selected date: <br/> {{(a|date)}} - {{(b|date)}}
                 </span>
-
-                <div class="dropdown-menu" ng-click="$event.preventDefault();$event.stopPropagation()">
-                    <div date-range start="a" end="b"></div>
+                </div>
+                <div uib-dropdown-menu="" ng-click="$event.preventDefault();$event.stopPropagation()">
+                    <div date-range start="a" end="b" auto-close="true"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="ibox float-e-margins">
-    <div class="ibox-title">
-        <h5>Switcher
-            <small>http://abpetkov.github.io/switchery/</small>
-        </h5>
-        <div ibox-tools></div>
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>ClockPicker <small>http://weareoutman.github.io/clockpicker/</small></h5>
+            <div ibox-tools></div>
+        </div>
+        <div class="ibox-content">
+            <h3>
+                ClockPicker
+            </h3>
+            <p>
+                A clock-style timepicker for Bootstrap. Options can be set by data- atribute.
+            </p>
+            <div class="input-group " clock-picker data-autoclose="true">
+                <input type="text" class="form-control" value="09:30">
+                <span class="input-group-addon">
+                    <span class="fa fa-clock-o"></span>
+                </span>
+            </div>
+        </div>
     </div>
-    <div class="ibox-content">
-        <h3>
-            Switcher
-        </h3>
 
-        <p>
-            Is iOS 7 style switches for your checkboxes.
-        </p>
-        <input type="checkbox" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="main.checkOne"/>
-        <input type="checkbox" class="js-switch" ui-switch="{color:'#ED5565'}" ng-model="main.checkTwo"/>
-        <br/>
-        <br/>
-        <input type="checkbox" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="swich3"/>
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Date Range Picker</h5>
+            <div ibox-tools></div>
+        </div>
+        <div class="ibox-content">
+            <h3>
+                Date Range Picker
+            </h3>
+            <p>
+                A JavaScript widget for choosing date ranges.
+                Designed to work with the Bootstrap CSS framework.
+            </p>
+            <input date-range-picker class="form-control date-picker" type="text" ng-model="main.daterange" />
+            <p class="m-t-md">https://github.com/fragaria/angular-daterangepicker</p>
+
+        </div>
     </div>
-</div>
+
     <div class="ibox float-e-margins">
         <div class="ibox-title  back-change">
             <h5>Color picker <small>http://mjolnic.github.io/bootstrap-colorpicker/</small></h5>
-            <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wrench"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#">Config option 1</a>
-                    </li>
-                    <li><a href="#">Config option 2</a>
-                    </li>
-                </ul>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
-            </div>
+            <div ibox-tools></div>
         </div>
         <div class="ibox-content">
             <h3>
@@ -561,6 +699,25 @@
             <h5>As a link</h5>
             <a colorpicker ng-model="model.color2">Normal link</a> Model: {{model.color2 | json}}
             <br/>
+        </div>
+    </div>
+
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Tags input </h5>
+        </div>
+        <div class="ibox-content">
+            <p>
+                Tags input directive for AngularJS http://mbenford.github.io/ngTagsInput
+            </p>
+
+            <p class="font-bold">
+                Basic example with few initial tags
+            </p>
+
+            <tags-input ng-model="main.tags">
+            </tags-input>
+
         </div>
     </div>
 </div>
@@ -654,6 +811,64 @@
             </form>
         </div>
     </div>
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Switcher
+                <small>http://abpetkov.github.io/switchery/</small>
+            </h5>
+            <div ibox-tools></div>
+        </div>
+        <div class="ibox-content">
+            <h3>
+                Switcher
+            </h3>
+
+            <p>
+                Is iOS 7 style switches for your checkboxes.
+            </p>
+            <input type="checkbox" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="main.checkOne"/>
+            <input type="checkbox" class="js-switch" ui-switch="{color:'#ED5565'}" ng-model="main.checkTwo"/>
+            <br/>
+            <br/>
+            <input type="checkbox" class="js-switch" ui-switch="{color:'#1AB394'}" ng-model="swich3"/>
+            <input type="checkbox" class="js-switch" ui-switch="{color:'#f8ac59'}" disabled ng-model="main.checkOne"/>
+        </div>
+    </div>
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Custom switch </h5>
+            <div ibox-tools></div>
+        </div>
+        <div class="ibox-content">
+            <h4>
+                Custom switch
+            </h4>
+            <p>
+                Pure CSS3 On/Off flipswitches with animated transitions.
+            </p>
+            <div class="switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" checked class="onoffswitch-checkbox" id="example1">
+                    <label class="onoffswitch-label" for="example1">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" class="onoffswitch-checkbox" id="example2">
+                    <label class="onoffswitch-label" for="example2">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 </div>
 <div class="row">
@@ -714,6 +929,170 @@
         </div>
     </div>
 </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title  back-change">
+                    <h5>Awesome bootstrap checkbox</h5>
+                    <div ibox-tools> </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <fieldset>
+                                <h3>
+                                    Basic
+                                </h3>
+                                <p>
+                                    Supports bootstrap brand colors: <code>.checkbox-primary</code>, <code>.checkbox-info</code> etc.
+                                </p>
+                                <div class="checkbox">
+                                    <input id="checkbox1" type="checkbox">
+                                    <label for="checkbox1">
+                                        Default
+                                    </label>
+                                </div>
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox2" type="checkbox" checked="">
+                                    <label for="checkbox2">
+                                        Primary
+                                    </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input id="checkbox3" type="checkbox">
+                                    <label for="checkbox3">
+                                        Success
+                                    </label>
+                                </div>
+                                <div class="checkbox checkbox-info">
+                                    <input id="checkbox4" type="checkbox">
+                                    <label for="checkbox4">
+                                        Info
+                                    </label>
+                                </div>
+                                <div class="checkbox checkbox-warning">
+                                    <input id="checkbox5" type="checkbox" checked="">
+                                    <label for="checkbox5">
+                                        Warning
+                                    </label>
+                                </div>
+                                <div class="checkbox checkbox-danger">
+                                    <input id="checkbox6" type="checkbox" checked="">
+                                    <label for="checkbox6">
+                                        Check me out
+                                    </label>
+                                </div>
+                                <p>Checkboxes without label text</p>
+                                <div class="checkbox">
+                                    <input type="checkbox" id="singleCheckbox1" value="option1" aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>
+                                <div class="checkbox checkbox-primary">
+                                    <input type="checkbox" id="singleCheckbox2" value="option2" checked="" aria-label="Single checkbox Two">
+                                    <label></label>
+                                </div>
+                                <p>Inline checkboxes</p>
+                                <div class="checkbox checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label for="inlineCheckbox1"> Inline One </label>
+                                </div>
+                                <div class="checkbox checkbox-success checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox2" value="option1" checked="">
+                                    <label for="inlineCheckbox2"> Inline Two </label>
+                                </div>
+                                <div class="checkbox checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox3" value="option1">
+                                    <label for="inlineCheckbox3"> Inline Three </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-4">
+                            <fieldset>
+                                <h3>
+                                    Circled
+                                </h3>
+                                <p>
+                                    <code>.checkbox-circle</code> for roundness.
+                                </p>
+                                <div class="checkbox checkbox-circle">
+                                    <input id="checkbox7" type="checkbox">
+                                    <label for="checkbox7">
+                                        Simply Rounded
+                                    </label>
+                                </div>
+                                <div class="checkbox checkbox-info checkbox-circle">
+                                    <input id="checkbox8" type="checkbox" checked="">
+                                    <label for="checkbox8">
+                                        Me too
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-4">
+                            <fieldset>
+                                <h3>
+                                    Radio
+                                </h3>
+                                <p>
+                                    Supports bootstrap brand colors: <code>.radio-primary</code>, <code>.radio-danger</code> etc.
+                                </p>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="radio">
+                                            <input type="radio" name="radio1" id="radio1" value="option1" checked="">
+                                            <label for="radio1">
+                                                Small
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <input type="radio" name="radio1" id="radio2" value="option2">
+                                            <label for="radio2">
+                                                Big
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="radio radio-danger">
+                                            <input type="radio" name="radio2" id="radio3" value="option1">
+                                            <label for="radio3">
+                                                Next
+                                            </label>
+                                        </div>
+                                        <div class="radio radio-danger">
+                                            <input type="radio" name="radio2" id="radio4" value="option2" checked="">
+                                            <label for="radio4">
+                                                One
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Radios without label text</p>
+                                <div class="radio">
+                                    <input type="radio" id="singleRadio1" value="option1" name="radioSingle1" aria-label="Single radio One">
+                                    <label></label>
+                                </div>
+                                <div class="radio radio-success">
+                                    <input type="radio" id="singleRadio2" value="option2" name="radioSingle1" checked="" aria-label="Single radio Two">
+                                    <label></label>
+                                </div>
+                                <p>Inline radios</p>
+                                <div class="radio radio-info radio-inline">
+                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                    <label for="inlineRadio1"> Inline One </label>
+                                </div>
+                                <div class="radio radio-inline">
+                                    <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                    <label for="inlineRadio2"> Inline Two </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Local style for demo purpose only -->

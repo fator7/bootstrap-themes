@@ -8,10 +8,19 @@ class UielementsController < ApplicationController
   def draggable_panels
   end
 
+  def resizeable_panels
+  end
+
   def buttons
   end
 
   def tables_panels
+  end
+
+  def tabs
+  end
+
+  def helper_classes
   end
 
   def notifications_tooltips

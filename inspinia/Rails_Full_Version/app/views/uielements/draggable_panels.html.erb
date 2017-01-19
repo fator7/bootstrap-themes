@@ -4,19 +4,19 @@
         <ol class="breadcrumb">
             <li>
                 <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
-        </li>
-        <li>
-            <a>Tables</a>
-        </li>
-        <li class="active">
-            <strong>Draggable Panels - Dra&amp;Drop box</strong>
-        </li>
-    </ol>
-</div>
-<div class="col-lg-2">
+            </li>
+            <li>
+                <a>Tables</a>
+            </li>
+            <li class="active">
+                <strong>Draggable Panels - Dra&amp;Drop box</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
 
+    </div>
 </div>
-        </div>
 <div class="wrapper wrapper-content  animated fadeInRight">
 <div class="row" id="sortable-view">
     <div class="col-lg-6">
@@ -110,7 +110,7 @@
 </div>
 </div>
 
-<%= javascript_include_tag "jquery-ui/jquery-ui-1.10.4.min.js" %>
+
 <% content_for :javascript do %>
 
 <script type="text/javascript">
@@ -131,7 +131,7 @@ $(function() {
                     connectWith: connect,
                     tolerance: 'pointer',
                     forcePlaceholderSize: true,
-                    opacity: 0.8,
+                    opacity: 0.8
                 })
                 .disableSelection();
     };

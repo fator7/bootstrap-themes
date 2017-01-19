@@ -1,6 +1,5 @@
 /**
  * INSPINIA - Responsive Admin Theme
- * Copyright 2014 Webapplayers.com
  *
  * Inspinia theme use AngularUI Router to manage routing and views
  * Each view are defined as state.

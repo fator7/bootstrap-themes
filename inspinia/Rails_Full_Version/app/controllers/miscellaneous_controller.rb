@@ -38,13 +38,58 @@ class MiscellaneousController < ApplicationController
   def diff
   end
 
+  def sweet_alert
+  end
+
   def idle_timer
   end
 
   def spinners
   end
 
+  def spinners_usage
+  end
+
   def live_favicon
+  end
+
+  def masonry
+  end
+
+  def loading_buttons
+  end
+
+  def clipboard
+  end
+
+  def text_spinners
+  end
+
+  def tour
+  end
+
+  def datamaps
+  end
+
+  def pdf_viewer
+  end
+
+  def social_buttons
+  end
+
+  def truncate
+  end
+
+  def password_meter
+  end
+
+  def i18support
+  end
+
+  def masonry
+  end
+
+  def masonry
   end
 
 end

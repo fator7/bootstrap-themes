@@ -5,13 +5,25 @@ class AppviewsController < ApplicationController
   def profile
   end
 
+  def profile_two
+  end
+
+  def contacts_two
+  end
+
   def projects
   end
 
   def project_detail
   end
 
+  def activity_stream
+  end
+
   def file_manager
+  end
+
+  def vote_list
   end
 
   def calendar

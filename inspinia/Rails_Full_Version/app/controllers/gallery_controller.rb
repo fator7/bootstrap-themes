@@ -5,4 +5,7 @@ class GalleryController < ApplicationController
   def bootstrap_carusela
   end
 
+  def slick_carusela
+  end
+
 end

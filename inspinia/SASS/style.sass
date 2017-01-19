@@ -1,12 +1,7 @@
-/*
- *
- *   INSPINIA - Responsive Admin Theme
- *   version 2.0
- *
- */
+/* INSPINIA - Responsive Admin Theme version 2.7 */
 
 // Google Fonts
-@import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en")
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")
 
 // Variables, Mixins
 @import "variables"
@@ -17,13 +12,17 @@
 @import "navigation"
 @import "top_navigation"
 @import "buttons"
-@import "badgets_labels"
+@import "badges_labels"
 @import "elements"
 @import "sidebar"
 @import "base"
 @import "pages"
 @import "chat"
+@import "metismenu"
 @import "spinners"
+
+// Landing page styles
+@import "landing"
 
 // RTL Support
 @import "rtl"
@@ -33,6 +32,7 @@
 
 // INSPINIA Skins
 @import "skins"
+@import "md-skin"
 
 // Media query style
 @import "media"
@@ -41,9 +41,13 @@
 // Your custom style to override base style
 @import "custom"
 
+// Clear layout on print mode
+@media print
+  nav.navbar-static-side
+    display: none
 
+  body
+    overflow: visible !important
 
-
-
-
-
+  #page-wrapper
+    margin: 0
